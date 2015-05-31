@@ -1,0 +1,56 @@
+body {
+  color: #666;
+  font-family: Andale Mono;
+}
+
+table {
+  perspective: 100%;
+}
+
+td {
+  border: 1px solid #CCC;
+  padding: 15px 20px;
+  text-align: center;
+  width: 100px;
+  height: 50px;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  position: relative;
+  /*color: transparent; */
+}
+
+td figure {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  backface-visibility: hidden;
+}
+
+td.is-flipped {
+  transform: rotateY(180deg);
+}
+
+td figure.is-back {
+  background-color: #DEDEDE;
+  transform: rotateY( 180deg );
+}
+
+td.is-active {
+  background-color: #F6F6F6;
+}
+
+td.is-previewed {
+  color: inherit
+}
+
+td.is-revealed {
+  background-color: #E1E1E1;
+  color: inherit
+}
+
