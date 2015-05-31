@@ -1,14 +1,27 @@
 body {
-  color: #666;
-  font-family: Andale Mono;
+  margin: 10px 0;
+  color: #FFF;
+  font-family: Monaco;
+  background-color: #1894CD;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hr-line {
+  padding: 10px 0;
+  color: #1894CD;
+  background-color: #FFF;
 }
 
 table {
+  margin: 0 auto;
   perspective: 100%;
 }
 
 td {
-  border: 1px solid #CCC;
+  background-color: #F6F6F6;
   padding: 15px 20px;
   text-align: center;
   width: 100px;
@@ -79,4 +92,9 @@ td.is-revealed figure {
 
 .screen-lock.is-active {
   z-index: 2;
+}
+
+select {
+  margin: 10px 0;
+  font-size: 30px;
 }

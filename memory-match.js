@@ -161,12 +161,6 @@
     });
   };
 
-  root.MemoryMatch = new MemoryMatch({
-    x: 2,
-    y: 2,
-    charSize: 4,
-    el: 'table',
-    lock: '.screen-lock'
-  });
+  root.MemoryMatch = MemoryMatch;
 
 } (window, window.helpers));

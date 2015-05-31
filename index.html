@@ -4,13 +4,32 @@
     <link href="style.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
-
-    <h1> Memory Match js! </h1>
     <div class="screen-lock"></div>
-    <table></table>
+
+    <div class="text-center">
+      <h1 class="text-center"> Memory Match js; </h1>
+      <p class="hr-line">Play the memory match game with words :)</p>
+
+      <div class="setup">
+        <label>Choose the dificulty</label><br />
+        <select name="level">
+          <option value="dumb">Dumb</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+          <option value="expert">Expert</option>
+        </select>
+        <br />
+        <button name="start">Start</button>
+      </div>
+
+      <table></table>
+
+    </div>
 
     <script src="helpers.js"></script>
     <script src="field.js"></script>
-    <script src="main.js"></script>
+    <script src="memory-match.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
