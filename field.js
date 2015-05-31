@@ -1,4 +1,4 @@
-;(function (root) {
+;(function (root, helpers) {
 
   function Field (options) {
     this.options = options;
@@ -15,12 +15,12 @@
   Field.prototype.onClick = function (event) {
     var target = event.currentTarget;
 
-    if (this.hasClass(target, 'is-active')) {
-      this.removeClass(target, 'is-active');
+    if (helpers.hasClass(target, 'is-active')) {
+      helpers.removeClass(target, 'is-active');
       return;
     }
 
-    this.addClass(target, 'is-active');
+    helpers.addClass(target, 'is-active');
     this.afterClick({
       id: this.id,
       name: this.name
@@ -28,30 +28,8 @@
     return false;
   };
 
-
   Field.prototype.registerClickCallback = function (fn) {
     this.afterClick = fn;
-  };
-
-  Field.prototype.hasClass = function(el, className) {
-    var regex = new RegExp(className, 'g');
-    return !!el.className.match(regex);
-  };
-
-  Field.prototype.removeClass = function (el, className) {
-    var regex = new RegExp(className, 'g');
-    el.className = el.className.replace(regex, '');
-
-  };
-
-  Field.prototype.addClass = function (el, className) {
-    var regex = new RegExp(className, 'g');
-    if (el.className.match(regex)) {
-      return;
-    }
-
-    el.className = (' ' + className);
-
   };
 
   Field.prototype.createElements = function () {
@@ -75,9 +53,9 @@
 
   Field.prototype.start = function () {
     this.back.innerHTML = this.name;
-    this.front.innerHTML = "lol";
+    this.front.innerHTML = this.name; // remove this
   };
 
   root.Field = Field;
 
-} (window));
+} (window, window.helpers));

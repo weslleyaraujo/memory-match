@@ -1,4 +1,4 @@
-;(function (root) {
+;(function (root, helpers) {
 
   function App (options) {
     this.options = options;
@@ -7,19 +7,6 @@
     this.render();
   }
 
-  App.helpers = {};
-
-  App.helpers.getName = function () {
-    return Math.random()
-      .toString(36)
-      .replace(/[0-9]/g, '')
-      .replace(/\./g, '');
-  };
-
-  App.helpers.getRange = function (initial, to) {
-    return Math.floor(Math.random() * to) + initial;
-  };
-
   App.prototype.prepare = function () {
     this.el = document.querySelector(this.options.el);
     this.clicks = {};
@@ -27,7 +14,7 @@
     this.cards = this.getArray(this.size / 2).map(function () {
       return {
         times: 0,
-        name: App.helpers.getName()
+        name: helpers.getName()
       }
     });
   };
@@ -46,7 +33,7 @@
 
     this.getArray(this.options.y).map(function (value, index) {
       this.clearCard();
-      actual = App.helpers.getRange(0, this.cards.length);
+      actual = helpers.getRange(0, this.cards.length);
       this.cards[actual].times++;
 
       field = new Field({
@@ -75,9 +62,39 @@
   };
 
   App.prototype.resultHandler = function () {
-    if (this.isClickValid()) {
-    
+    if (!this.isClickValid()) {
+      return;
     }
+
+    this.reveal(function () {
+      if (this.isMatch()) {
+        this.setMatched();
+        this.clicks = {};
+        return;
+      }
+
+      this.clearFlippeds();
+
+    }.bind(this));
+  };
+
+  App.prototype.setMatched = function (fn) {
+    [].forEach.call(this.el.querySelectorAll('td.is-flipped'), function (field) {
+      helpers.addClass(field, 'is-matched');
+    }.bind(this));
+  };
+
+  App.prototype.reveal = function (fn) {
+    [].forEach.call(this.el.querySelectorAll('td.is-active'), function (field) {
+      helpers.addClass(field, 'is-flipped');
+    }.bind(this));
+
+    // change it to animation over
+    setTimeout(fn, 1100);
+  };
+
+  App.prototype.isMatch = function () {
+    return (this.clicks.last.name === this.clicks.current.name);
   };
 
   App.prototype.isClickValid = function () {
@@ -88,10 +105,12 @@
     this.clicks[key] = values;
   };
 
-  App.prototype.clearActives = function () {
-    [].forEach.call(document.querySelectorAll('td.is-active'), function (field) {
+  App.prototype.clearFlippeds = function () {
+    [].forEach.call(this.el.querySelectorAll('td.is-flipped'), function (field) {
       field.className = "";
     });
+
+    this.clicks = {};
   };
 
   App.prototype.clearCard = function () {
@@ -112,4 +131,4 @@
     el: 'table'
   });
 
-} (window));
+} (window, window.helpers));

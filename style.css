@@ -32,6 +32,14 @@ td figure {
   backface-visibility: hidden;
 }
 
+td.is-matched {
+  transform: rotateY(180deg);
+}
+
+td.is-matched figure {
+  background-color: green !important;
+}
+
 td.is-flipped {
   transform: rotateY(180deg);
 }
