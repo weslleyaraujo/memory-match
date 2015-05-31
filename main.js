@@ -1,16 +1,17 @@
 ;(function (root, helpers) {
 
-  function App (options) {
+  function MemoryMatch (options) {
     this.options = options;
     this.prepare();
     this.start();
     this.render();
   }
 
-  App.prototype.prepare = function () {
+  MemoryMatch.prototype.prepare = function () {
     this.el = document.querySelector(this.options.el);
     this.screen = document.querySelector(this.options.lock);
     this.clicks = {};
+    this.matches = 0;
     this.size = (this.options.x * this.options.y);
     this.cards = this.getArray(this.size / 2).map(function () {
       return {
@@ -20,13 +21,13 @@
     });
   };
 
-  App.prototype.render = function () {
+  MemoryMatch.prototype.render = function () {
     this.table.forEach(function (element) {
       this.el.appendChild(element);
     }.bind(this));
   };
 
-  App.prototype.start = function () {
+  MemoryMatch.prototype.start = function () {
     this.table = this.getArray(this.options.x).map(function () {
       var el = document.createElement('tr'),
       field,
@@ -53,7 +54,7 @@
     }.bind(this));
   };
 
-  App.prototype.afterActive = function (field) {
+  MemoryMatch.prototype.afterActive = function (field) {
     if (this.clicks['last']) {
       this.setClickValue('current', field);
       this.resultHandler();
@@ -63,15 +64,15 @@
     this.setClickValue('last', field);
   };
 
-  App.prototype.lockScreen = function () {
+  MemoryMatch.prototype.lockScreen = function () {
     helpers.addClass(this.screen, 'is-active');
   };
 
-  App.prototype.unlockScreen = function () {
+  MemoryMatch.prototype.unlockScreen = function () {
     helpers.removeClass(this.screen, 'is-active');
   };
 
-  App.prototype.resultHandler = function () {
+  MemoryMatch.prototype.resultHandler = function () {
     if (!this.isClickValid()) {
       return;
     }
@@ -79,9 +80,11 @@
     this.lockScreen();
     this.reveal(function () {
       if (this.isMatch()) {
+        this.matches++;
         this.setMatched();
         this.unlockScreen();
         this.clicks = {};
+        this.afterMatch();
         return;
       }
 
@@ -91,17 +94,27 @@
     }.bind(this));
   };
 
-  App.prototype.setMatched = function (fn) {
+  MemoryMatch.prototype.afterMatch = function () {
+    if (this.matches == (this.size / 2)) {
+      this.wonHanlder();
+    }
+  };
+
+  MemoryMatch.prototype.wonHanlder = function () {
+    alert('you won!');
+  };
+
+  MemoryMatch.prototype.setMatched = function (fn) {
     this.filter(this.getClicksSelector(), function (field) {
       helpers.addClass(field, 'is-matched');
     }.bind(this));
   };
 
-  App.prototype.getClicksSelector = function () {
+  MemoryMatch.prototype.getClicksSelector = function () {
     return '#' + this.clicks.last.id + ' ,#' + this.clicks.current.id;
   };
 
-  App.prototype.reveal = function (fn) {
+  MemoryMatch.prototype.reveal = function (fn) {
     this.filter('td.is-active', function (field) {
       helpers.addClass(field, 'is-flipped');
     }.bind(this));
@@ -110,23 +123,23 @@
     setTimeout(fn, 1100);
   };
 
-  App.prototype.filter = function (filter, fn) {
+  MemoryMatch.prototype.filter = function (filter, fn) {
     [].forEach.call(this.el.querySelectorAll(filter), fn);
   };
 
-  App.prototype.isMatch = function () {
+  MemoryMatch.prototype.isMatch = function () {
     return (this.clicks.last.name === this.clicks.current.name);
   };
 
-  App.prototype.isClickValid = function () {
+  MemoryMatch.prototype.isClickValid = function () {
     return !(this.clicks.last.id === this.clicks.current.id);
   };
 
-  App.prototype.setClickValue = function (key, values) {
+  MemoryMatch.prototype.setClickValue = function (key, values) {
     this.clicks[key] = values;
   };
 
-  App.prototype.clearFlippeds = function () {
+  MemoryMatch.prototype.clearFlippeds = function () {
     this.filter('td.is-flipped', function (field) {
       if (!helpers.hasClass(field, 'is-matched')) {
         field.className = "";
@@ -136,21 +149,21 @@
     this.clicks = {};
   };
 
-  App.prototype.clearCard = function () {
+  MemoryMatch.prototype.clearCard = function () {
     this.cards = this.cards.filter(function (card) {
       return card.times < 2;
     });
   };
 
-  App.prototype.getArray = function (length) {
+  MemoryMatch.prototype.getArray = function (length) {
     return Array.apply(null, {
       length: length
     });
   };
 
-  root.App = new App({
-    x: 10,
-    y: 10,
+  root.MemoryMatch = new MemoryMatch({
+    x: 6,
+    y: 6,
     el: 'table',
     lock: '.screen-lock'
   });

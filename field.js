@@ -21,10 +21,12 @@
     }
 
     helpers.addClass(target, 'is-active');
+
     this.afterClick({
       id: this.id,
       name: this.name
     });
+
     return false;
   };
 
