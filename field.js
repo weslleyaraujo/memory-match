@@ -53,7 +53,7 @@
 
   Field.prototype.start = function () {
     this.back.innerHTML = this.name;
-    this.front.innerHTML = this.name; // remove this
+    this.front.innerHTML = "";
   };
 
   root.Field = Field;

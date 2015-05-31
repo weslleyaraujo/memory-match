@@ -9,6 +9,7 @@
 
   App.prototype.prepare = function () {
     this.el = document.querySelector(this.options.el);
+    this.screen = document.querySelector(this.options.lock);
     this.clicks = {};
     this.size = (this.options.x * this.options.y);
     this.cards = this.getArray(this.size / 2).map(function () {
@@ -34,11 +35,12 @@
     this.getArray(this.options.y).map(function (value, index) {
       this.clearCard();
       actual = helpers.getRange(0, this.cards.length);
+
       this.cards[actual].times++;
 
       field = new Field({
         name: this.cards[actual].name,
-        id: this.cards[actual].name + '-' + index
+        id: this.cards[actual].name + '-' + helpers.getName()
       });
 
       field.registerClickCallback(this.afterActive.bind(this));
@@ -61,36 +63,55 @@
     this.setClickValue('last', field);
   };
 
+  App.prototype.lockScreen = function () {
+    helpers.addClass(this.screen, 'is-active');
+  };
+
+  App.prototype.unlockScreen = function () {
+    helpers.removeClass(this.screen, 'is-active');
+  };
+
   App.prototype.resultHandler = function () {
     if (!this.isClickValid()) {
       return;
     }
 
+    this.lockScreen();
     this.reveal(function () {
       if (this.isMatch()) {
         this.setMatched();
+        this.unlockScreen();
         this.clicks = {};
         return;
       }
 
       this.clearFlippeds();
+      this.unlockScreen();
 
     }.bind(this));
   };
 
   App.prototype.setMatched = function (fn) {
-    [].forEach.call(this.el.querySelectorAll('td.is-flipped'), function (field) {
+    this.filter(this.getClicksSelector(), function (field) {
       helpers.addClass(field, 'is-matched');
     }.bind(this));
   };
 
+  App.prototype.getClicksSelector = function () {
+    return '#' + this.clicks.last.id + ' ,#' + this.clicks.current.id;
+  };
+
   App.prototype.reveal = function (fn) {
-    [].forEach.call(this.el.querySelectorAll('td.is-active'), function (field) {
+    this.filter('td.is-active', function (field) {
       helpers.addClass(field, 'is-flipped');
     }.bind(this));
 
     // change it to animation over
     setTimeout(fn, 1100);
+  };
+
+  App.prototype.filter = function (filter, fn) {
+    [].forEach.call(this.el.querySelectorAll(filter), fn);
   };
 
   App.prototype.isMatch = function () {
@@ -106,8 +127,10 @@
   };
 
   App.prototype.clearFlippeds = function () {
-    [].forEach.call(this.el.querySelectorAll('td.is-flipped'), function (field) {
-      field.className = "";
+    this.filter('td.is-flipped', function (field) {
+      if (!helpers.hasClass(field, 'is-matched')) {
+        field.className = "";
+      }
     });
 
     this.clicks = {};
@@ -127,8 +150,9 @@
 
   root.App = new App({
     x: 10,
-    y: 5,
-    el: 'table'
+    y: 10,
+    el: 'table',
+    lock: '.screen-lock'
   });
 
 } (window, window.helpers));

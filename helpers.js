@@ -6,7 +6,8 @@
     return Math.random()
       .toString(36)
       .replace(/[0-9]/g, '')
-      .replace(/\./g, '');
+      .replace(/\./g, '')
+      .slice(0, 8);
   };
 
   helpers.removeClass = function (el, className) {
@@ -25,7 +26,7 @@
       return;
     }
 
-    el.className = (' ' + className);
+    el.className += (' ' + className);
   };
 
   helpers.getRange = function (initial, to) {
