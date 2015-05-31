@@ -13,10 +13,11 @@ td {
   text-align: center;
   width: 100px;
   height: 50px;
-  transform-style: preserve-3d;
-  transition: transform 1s;
   position: relative;
   text-transform: uppercase;
+  line-height: 50px;
+  transform-style: preserve-3d;
+  transition: transform 1s;
 }
 
 td figure {

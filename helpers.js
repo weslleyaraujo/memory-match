@@ -2,12 +2,12 @@
 
   var helpers = {};
 
-  helpers.getName = function () {
+  helpers.getName = function (charSize) {
     return Math.random()
       .toString(36)
       .replace(/[0-9]/g, '')
       .replace(/\./g, '')
-      .slice(0, 8);
+      .slice(0, charSize);
   };
 
   helpers.removeClass = function (el, className) {

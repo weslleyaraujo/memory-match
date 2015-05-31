@@ -16,9 +16,9 @@
     this.cards = this.getArray(this.size / 2).map(function () {
       return {
         times: 0,
-        name: helpers.getName()
+        name: helpers.getName(this.options.charSize)
       }
-    });
+    }.bind(this));
   };
 
   MemoryMatch.prototype.render = function () {
@@ -41,7 +41,7 @@
 
       field = new Field({
         name: this.cards[actual].name,
-        id: this.cards[actual].name + '-' + helpers.getName()
+        id: this.cards[actual].name + '-' + helpers.getName(this.options.charSize)
       });
 
       field.registerClickCallback(this.afterActive.bind(this));
@@ -162,8 +162,9 @@
   };
 
   root.MemoryMatch = new MemoryMatch({
-    x: 6,
-    y: 6,
+    x: 2,
+    y: 2,
+    charSize: 4,
     el: 'table',
     lock: '.screen-lock'
   });
