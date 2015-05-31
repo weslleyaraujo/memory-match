@@ -13,33 +13,45 @@
   };
 
   Field.prototype.onClick = function (event) {
-    this.toggleClass(event.currentTarget, 'is-active');
+    var target = event.currentTarget;
 
-    /* already active? */
-    if (typeof this.afterClick === 'function') {
-      this.afterClick();
+    if (this.hasClass(target, 'is-active')) {
+      this.removeClass(target, 'is-active');
+      return;
     }
 
+    this.addClass(target, 'is-active');
+    this.afterClick({
+      id: this.id,
+      name: this.name
+    });
     return false;
   };
 
-  Field.prototype.registerClick = function (fn) {
+
+  Field.prototype.registerClickCallback = function (fn) {
     this.afterClick = fn;
   };
 
   Field.prototype.hasClass = function(el, className) {
     var regex = new RegExp(className, 'g');
-    return el.className.match(regex);
+    return !!el.className.match(regex);
   };
 
-  Field.prototype.toggleClass = function (el, className) {
+  Field.prototype.removeClass = function (el, className) {
+    var regex = new RegExp(className, 'g');
+    el.className = el.className.replace(regex, '');
+
+  };
+
+  Field.prototype.addClass = function (el, className) {
     var regex = new RegExp(className, 'g');
     if (el.className.match(regex)) {
-      el.className = el.className.replace(regex, '');
       return;
     }
 
-    el.className  = (' ' + className);
+    el.className = (' ' + className);
+
   };
 
   Field.prototype.createElements = function () {
@@ -57,6 +69,8 @@
   Field.prototype.prepare = function () {
     this.createElements();
     this.name = this.options.name;
+    this.el.id = this.options.id;
+    this.id = this.options.id;
   };
 
   Field.prototype.start = function () {

@@ -11,9 +11,9 @@
 
   App.helpers.getName = function () {
     return Math.random()
-  .toString(36)
-  .replace(/[0-9]/g, '')
-  .replace(/\./g, '');
+      .toString(36)
+      .replace(/[0-9]/g, '')
+      .replace(/\./g, '');
   };
 
   App.helpers.getRange = function (initial, to) {
@@ -22,12 +22,12 @@
 
   App.prototype.prepare = function () {
     this.el = document.querySelector(this.options.el);
-    this.clickCount = 0;
+    this.clicks = {};
     this.size = (this.options.x * this.options.y);
     this.cards = this.getArray(this.size / 2).map(function () {
       return {
         times: 0,
-      name: App.helpers.getName()
+        name: App.helpers.getName()
       }
     });
   };
@@ -50,10 +50,11 @@
       this.cards[actual].times++;
 
       field = new Field({
-        name: this.cards[actual].name
+        name: this.cards[actual].name,
+        id: this.cards[actual].name + '-' + index
       });
 
-      field.registerClick(this.afterActive.bind(this));
+      field.registerClickCallback(this.afterActive.bind(this));
 
       el.appendChild(field.el);
     }.bind(this));
@@ -63,12 +64,34 @@
     }.bind(this));
   };
 
-  App.prototype.afterActive = function () {
-    this.clickCount++;
-    if (this.clickCount === 2) {
-      alert('reveal');
-      this.clickCount = 0;
+  App.prototype.afterActive = function (field) {
+    if (this.clicks['last']) {
+      this.setClickValue('current', field);
+      this.resultHandler();
+      return;
     }
+
+    this.setClickValue('last', field);
+  };
+
+  App.prototype.resultHandler = function () {
+    if (this.isClickValid()) {
+    
+    }
+  };
+
+  App.prototype.isClickValid = function () {
+    return !(this.clicks.last.id === this.clicks.current.id);
+  };
+
+  App.prototype.setClickValue = function (key, values) {
+    this.clicks[key] = values;
+  };
+
+  App.prototype.clearActives = function () {
+    [].forEach.call(document.querySelectorAll('td.is-active'), function (field) {
+      field.className = "";
+    });
   };
 
   App.prototype.clearCard = function () {
