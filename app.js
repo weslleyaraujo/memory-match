@@ -1,5 +1,3 @@
-    // new MemoryMatch({
-    // });
 ;(function (root, helpers) {
   var levels = {
     dumb: {
