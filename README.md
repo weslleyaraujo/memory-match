@@ -1,5 +1,5 @@
 # Memory Match
 
-The memory match game created with javascript and random words 😁o
+The memory match game created with javascript and random words 😁
 
 **Still in development**
