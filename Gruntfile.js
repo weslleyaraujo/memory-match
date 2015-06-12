@@ -17,8 +17,15 @@ module.exports = function (grunt) {
     all: {
       src: [
         'Gruntfile.js',
-        'src/*.js'
+        'src/js/*.js'
       ]
+    },
+    specific: {
+      options: {
+        debug: true,
+        expr: true
+      },
+      src: []
     }
   };
 
@@ -102,9 +109,14 @@ module.exports = function (grunt) {
   grunt.registerTask('develop', [
     'sass',
     'postcss',
+    'jshint:all',
     'concat:js',
     'connect',
     'watch'
   ]);
+
+  grunt.event.on('watch', function(action, filepath) {
+    grunt.config('jshint.specific.src', filepath);
+  });
 
 };

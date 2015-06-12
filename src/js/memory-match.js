@@ -28,7 +28,7 @@
       return {
         times: 0,
         name: x
-      }
+      };
     }.bind(this));
 
     console.log(this.something);
@@ -68,7 +68,7 @@
   };
 
   MemoryMatch.prototype.afterActive = function (field) {
-    if (this.clicks['last']) {
+    if (this.clicks.last) {
       this.setClickValue('current', field);
       this.resultHandler();
       return;
@@ -145,7 +145,7 @@
   };
 
   MemoryMatch.prototype.isClickValid = function () {
-    return !(this.clicks.last.id === this.clicks.current.id);
+    return this.clicks.last.id !== this.clicks.current.id;
   };
 
   MemoryMatch.prototype.setClickValue = function (key, values) {

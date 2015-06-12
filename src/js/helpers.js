@@ -1,4 +1,4 @@
-;(function (root, helpers) {
+;(function (root) {
 
   var helpers = {};
 
@@ -9,7 +9,7 @@
       .replace(/[0-9]/g, '')
       .replace(/\./g, '')
       .slice(0, charSize)
-      [(Math.random()<.5) ? 'toUpperCase' : 'toString']();
+      [(Math.random()<0.5) ? 'toUpperCase' : 'toString']();
   };
 
   helpers.removeClass = function (el, className) {

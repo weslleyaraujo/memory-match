@@ -47,7 +47,7 @@
   App.prototype.clear = function (value) {
     try {
       this.game.el.innerHTML = "";
-    } catch (e) {};
+    } catch (e) {}
   };
 
   App.prototype.init = function (value) {
@@ -61,11 +61,11 @@
       y: levels[value].size,
       el: 'table',
       lock: '.screen-lock'
-    }
+    };
   };
 
   root.App = new App({
     el: '.setup'
-  })
+  });
 
 } (window, window.helpers));
