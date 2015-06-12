@@ -50,4 +50,5 @@ bower_components
 *.css.map
 
 ### Project ##
-dist
+dist/css/*.css
+dist/js/*.js
