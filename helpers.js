@@ -3,26 +3,25 @@
   var helpers = {};
 
   helpers.getName = function (charSize) {
+    charSize = charSize || 1;
     return Math.random()
       .toString(36)
       .replace(/[0-9]/g, '')
       .replace(/\./g, '')
-      .slice(0, charSize);
+      .slice(0, charSize)
+      [(Math.random()<.5) ? 'toUpperCase' : 'toString']();
   };
 
   helpers.removeClass = function (el, className) {
-    var regex = new RegExp(className, 'g');
-    el.className = el.className.replace(regex, '');
+    el.className = el.className.replace(new RegExp(className, 'g'), '');
   };
   
   helpers.hasClass = function(el, className) {
-    var regex = new RegExp(className, 'g');
-    return !!el.className.match(regex);
+    return !!el.className.match(new RegExp(className, 'g'));
   };
 
   helpers.addClass = function (el, className) {
-    var regex = new RegExp(className, 'g');
-    if (el.className.match(regex)) {
+    if (el.className.match(new RegExp(className, 'g'))) {
       return;
     }
 

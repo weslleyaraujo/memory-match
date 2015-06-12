@@ -16,8 +16,8 @@
     },
 
     hard: {
-      size: 8,
-      charSize: 6
+      size: 4,
+      charSize: 1
     },
     expert: {
       size: 10,

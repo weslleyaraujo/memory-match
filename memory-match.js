@@ -12,13 +12,26 @@
     this.screen = document.querySelector(this.options.lock);
     this.clicks = {};
     this.matches = 0;
+
+    // move
+    this.something = [];
     this.size = (this.options.x * this.options.y);
     this.cards = this.getArray(this.size / 2).map(function () {
+      var x = helpers.getName(this.options.charSize);
+
+      while (this.something.indexOf(x) > 0) {
+        x = helpers.getName(this.options.charSize);
+      }
+
+      this.something.push(x);
+
       return {
         times: 0,
-        name: helpers.getName(this.options.charSize)
+        name: x
       }
     }.bind(this));
+
+    console.log(this.something);
   };
 
   MemoryMatch.prototype.render = function () {
