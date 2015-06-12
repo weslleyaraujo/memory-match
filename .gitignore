@@ -45,5 +45,9 @@ bower_components
 .bower-registry
 .bower-tmp
 
+### Sass ###
+.sass-cache
+*.css.map
+
 ### Project ##
 dist

@@ -3,19 +3,33 @@ module.exports = function (grunt) {
 
   var tasks = [
     'grunt-contrib-compass',
-    'grunt-contrib-watch',
     'grunt-contrib-jshint'
   ],
 
   config = {};
 
-  // # jshint
+  // jshint
   config.jshint = {
     all: {
       src: [
         'Gruntfile.js',
         'src/*.js'
       ]
+    }
+  };
+
+  // compass
+  config.compass = {
+    all: {
+      options: {
+        specify: [
+          'src/sass/main.sass'
+        ],
+        sassDir: 'src/sass',
+        cssDir: 'dist/css',
+        outputStyle: 'nested',
+        environment: 'development'
+      }
     }
   };
 
