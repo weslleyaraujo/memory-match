@@ -1,0 +1,64 @@
+// ******************
+// game
+//
+// <table class="game"> ... </table>
+// ***
+
+$module-name: 'game'
+
+.#{$module-name}
+  margin: 0 auto
+  perspective: 100%
+
+  td
+    background-color: #F6F6F6
+    height: 50px
+    line-height: 50px
+    padding: 15px 20px
+    position: relative
+    text-align: center
+    width: 100px
+    transform-style: preserve-3d
+    @extend %default-transition
+
+    // states
+    &.is-matched, &.is-flipped 
+      transform: rotateY(180deg)
+    
+    &.is-matched
+      figure 
+        background-color: green !important
+        color: #FFF !important
+
+    &.is-active
+      figure 
+        background-color: blue
+        color: #FFF !important
+
+    &.is-previewed, &.is-revealed
+      figure 
+        color: inherit
+
+    &.is-revealed
+      figure 
+        background-color: #E1E1E1
+
+  figure
+    bottom: 0
+    display: block
+    height: 100%
+    left: 0
+    margin: auto
+    position: absolute
+    right: 0
+    top: 0
+    width: 100%
+    backface-visibility: hidden
+    @extend %default-transition
+
+    // states
+    &.is-back 
+      background-color: #DEDEDE
+      transform: rotateY(180deg)
+
+

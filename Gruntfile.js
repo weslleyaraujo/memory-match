@@ -2,10 +2,12 @@ module.exports = function (grunt) {
   'use strict';
 
   var tasks = [
-    'grunt-contrib-compass',
+    'grunt-sass',
+    'grunt-postcss',
     'grunt-contrib-jshint',
     'grunt-contrib-watch',
-    'grunt-contrib-connect'
+    'grunt-contrib-connect',
+    'grunt-contrib-concat'
   ],
 
   config = {};
@@ -20,17 +22,14 @@ module.exports = function (grunt) {
     }
   };
 
-  // compass
-  config.compass = {
-    all: {
-      options: {
-        specify: [
-          'src/sass/main.sass'
-        ],
-        sassDir: 'src/sass',
-        cssDir: 'dist/css',
-        outputStyle: 'nested',
-        environment: 'development'
+  // sass
+  config.sass = {
+    options: {
+      sourceMap: true
+    },
+    dist: {
+      files: {
+        'dist/css/main.css': 'src/sass/main.sass'
       }
     }
   };
@@ -43,7 +42,29 @@ module.exports = function (grunt) {
         'src/sass/*.scss', // remove it after solve map .sass issue
         'src/sass/**/*.sass'
       ],
-      tasks: ['compass:all']
+      tasks: ['sass', 'postcss']
+    },
+    js: {
+      files: [
+        'src/js/*.js',
+      ],
+      tasks: ['concat:js']
+    }
+  };
+
+  // postcss
+  config.postcss = {
+    options: {
+      map: true,
+      processors: [
+        require('autoprefixer-core')({
+          browsers: 'last 4 versions'
+        }),
+        require('csswring')
+      ]
+    },
+    dist: {
+      src: 'dist/css/*.css'
     }
   };
 
@@ -57,6 +78,20 @@ module.exports = function (grunt) {
     }
   };
 
+  // concat
+  config.concat = {
+    js: {
+      src: [
+        'src/js/helpers.js',
+        'src/js/field.js',
+        'src/js/memory-match.js',
+        'src/js/app.js'
+      ],
+
+      dest: 'dist/js/application.js'
+    }
+  };
+
   // config
   grunt.initConfig(config);
 
@@ -65,7 +100,9 @@ module.exports = function (grunt) {
 
   // tasks
   grunt.registerTask('develop', [
-    'compass:all',
+    'sass',
+    'postcss',
+    'concat:js',
     'connect',
     'watch'
   ]);
