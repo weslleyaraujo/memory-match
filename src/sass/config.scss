@@ -1,0 +1,26 @@
+// *****
+// Config file
+//
+// In order to :tabe /
+// ***
+
+// Colors
+$colors: (
+  0: #FF6138,
+  1: #FFFF9D,
+  2: #BEEB9F,
+  3: #79BD8F,
+  4: #00A388
+);
+
+// background-color
+$main-background-color: map-get($colors, 0);
+
+// 
+// // text
+$main-text-color: #FFF;
+$primary-font-family: Arial;
+$main-font-size: 50px;
+
+// z-index manager
+$z-index-module-name: 3;

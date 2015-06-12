@@ -3,7 +3,9 @@ module.exports = function (grunt) {
 
   var tasks = [
     'grunt-contrib-compass',
-    'grunt-contrib-jshint'
+    'grunt-contrib-jshint',
+    'grunt-contrib-watch',
+    'grunt-contrib-connect'
   ],
 
   config = {};
@@ -33,10 +35,39 @@ module.exports = function (grunt) {
     }
   };
 
+  // watch
+  config.watch = {
+    sass: {
+      files: [
+        'src/sass/*.sass',
+        'src/sass/*.scss', // remove it after solve map .sass issue
+        'src/sass/**/*.sass'
+      ],
+      tasks: ['compass:all']
+    }
+  };
+
+  // connect
+  config.connect = {
+    server: {
+      options: {
+        port: 8180,
+        base: '.'
+      }
+    }
+  };
+
   // config
   grunt.initConfig(config);
 
   // load tasks
   tasks.forEach(grunt.loadNpmTasks);
+
+  // tasks
+  grunt.registerTask('develop', [
+    'compass:all',
+    'connect',
+    'watch'
+  ]);
 
 };
