@@ -2,26 +2,21 @@
   var levels = {
     dumb: {
       size: 2,
-      charSize: 2
     },
 
     easy: {
       size: 4,
-      charSize: 2
     },
 
     medium: {
       size: 6,
-      charSize: 4
     },
 
     hard: {
-      size: 8,
-      charSize: 6
+      size: 4,
     },
     expert: {
       size: 10,
-      charSize: 8
     }
   };
 
@@ -35,6 +30,7 @@
     this.el = document.querySelector(this.options.el);
     this.level = this.el.querySelector('[name="level"]');
     this.start = this.el.querySelector('[name="start"]');
+    this.game = null;
   };
 
   App.prototype.bind = function () {
@@ -42,16 +38,20 @@
   };
 
   App.prototype.onClickStart = function (event) {
+    this.clear();
     this.data = this.getData(this.level.value);
     this.init();
     return false;
   };
 
   App.prototype.clear = function (value) {
-    debugger;
+    try {
+      this.game.el.innerHTML = "";
+    } catch (e) {};
   };
 
   App.prototype.init = function (value) {
+    this.clear();
     this.game = new MemoryMatch(this.data);
   };
 
@@ -59,7 +59,6 @@
     return {
       x: levels[value].size,
       y: levels[value].size,
-      charSize: levels[value].charSize,
       el: 'table',
       lock: '.screen-lock'
     }

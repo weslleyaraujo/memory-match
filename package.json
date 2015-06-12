@@ -1,0 +1,36 @@
+{
+  "name": "memory-match",
+  "version": "0.0.1",
+  "description": "A simple memory match game created with javascript.",
+  "main": "memory-match.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weslleyaraujo/memory-match.git"
+  },
+  "keywords": [
+    "game",
+    "javascript",
+    "game",
+    "js",
+    "memory",
+    "match"
+  ],
+  "author": "Weslley Araujo <weslleyaraujo20@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/weslleyaraujo/memory-match/issues"
+  },
+  "homepage": "https://github.com/weslleyaraujo/memory-match",
+  "devDependencies": {
+    "autoprefixer-core": "^5.2.0",
+    "csswring": "^3.0.5",
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-connect": "^0.10.1",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-postcss": "^0.5.1",
+    "grunt-sass": "^1.0.0"
+  }
+}
