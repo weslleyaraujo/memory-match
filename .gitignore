@@ -52,3 +52,4 @@ bower_components
 ### Project ##
 dist/css/*.css
 dist/js/*.js
+*.DS_Store
