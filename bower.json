@@ -1,0 +1,20 @@
+{
+  "name": "memory-match",
+  "version": "0.0.0",
+  "homepage": "https://github.com/weslleyaraujo/memory-match",
+  "authors": [
+    "Weslley Araujo <weslleyaraujo20@gmail.com>"
+  ],
+  "description": "A simple memory match game created with javascript.",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "konami-js": "*"
+  }
+}
