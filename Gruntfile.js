@@ -7,7 +7,8 @@ module.exports = function (grunt) {
     'grunt-contrib-jshint',
     'grunt-contrib-watch',
     'grunt-contrib-connect',
-    'grunt-contrib-concat'
+    'grunt-contrib-concat',
+    'grunt-contrib-copy'
   ],
 
   config = {};
@@ -46,8 +47,8 @@ module.exports = function (grunt) {
     sass: {
       files: [
         'src/sass/*.sass',
-        'src/sass/*.scss', // remove it after solve map .sass issue
-        'src/sass/**/*.sass'
+        'src/sass/**/*.sass',
+        'src/fonts/**/*.scss'
       ],
       tasks: ['sass', 'postcss']
     },
@@ -99,6 +100,21 @@ module.exports = function (grunt) {
     }
   };
 
+  // copy
+  config.copy = {
+    fonts: {
+      files: [
+        {
+          cwd: 'src',
+          expand: true,
+          src: ['fonts/**/*.{eot,svg,ttf,woff,woff2}'],
+          dest: 'dist/'
+        },
+      ]
+    }
+  };
+
+
   // config
   grunt.initConfig(config);
 
@@ -111,6 +127,7 @@ module.exports = function (grunt) {
     'postcss',
     'jshint:all',
     'concat:js',
+    'copy',
     'connect',
     'watch'
   ]);
