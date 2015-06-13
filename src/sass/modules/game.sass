@@ -8,11 +8,12 @@ $module-name: 'game'
 
 .#{$module-name}
   margin: 0 auto
-  font-family: $game-default-font
+  font-family: $font-family-icon
+  font-size: $font-size-icon
   perspective: 100%
 
   td
-    background-color: #F6F6F6
+    background-color: map-get($colors, 0)
     height: 50px
     line-height: 50px
     padding: 15px 20px
@@ -28,13 +29,13 @@ $module-name: 'game'
     
     &.is-matched
       figure 
-        background-color: green !important
-        color: #FFF !important
+        background-color: map-get($colors, 4) !important
+        color: map-get($colors, 1) !important
 
     &.is-active
       figure 
-        background-color: blue
-        color: #FFF !important
+        background-color: map-get($colors, 3)
+        color: #FFF
 
     &.is-previewed, &.is-revealed
       figure 

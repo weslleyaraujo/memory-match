@@ -13,7 +13,6 @@
   };
 
   Field.prototype.onClick = function (event) {
-    console.log('wowo');
     var target = event.currentTarget;
 
     if (helpers.hasClass(target, 'is-active')) {

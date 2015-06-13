@@ -14,24 +14,29 @@
     this.matches = 0;
 
     // move
-    this.something = [];
+    this.characters = [];
     this.size = (this.options.x * this.options.y);
+
     this.cards = this.getArray(this.size / 2).map(function () {
-      var x = helpers.getName(this.options.charSize);
 
-      while (this.something.indexOf(x) > 0) {
-        x = helpers.getName(this.options.charSize);
-      }
-
-      this.something.push(x);
+      this.createUnique();
 
       return {
         times: 0,
-        name: x
+        name: this.actualChar
       };
-    }.bind(this));
 
-    console.log(this.something);
+    }.bind(this));
+  };
+
+  MemoryMatch.prototype.createUnique = function () {
+      this.actualChar = helpers.getName(this.options.charSize);
+
+      while (this.characters.indexOf(this.actualChar) > 0) {
+        this.actualChar = helpers.getName(this.options.charSize);
+      }
+
+      this.characters.push(this.actualChar);
   };
 
   MemoryMatch.prototype.render = function () {
@@ -118,7 +123,7 @@
   };
 
   MemoryMatch.prototype.setMatched = function (fn) {
-    this.filter(this.getClicksSelector(), function (field) {
+    this.filterBySelector(this.getClicksSelector(), function (field) {
       helpers.addClass(field, 'is-matched');
     }.bind(this));
   };
@@ -128,7 +133,7 @@
   };
 
   MemoryMatch.prototype.reveal = function (fn) {
-    this.filter('td.is-active', function (field) {
+    this.filterBySelector('td.is-active', function (field) {
       helpers.addClass(field, 'is-flipped');
     }.bind(this));
 
@@ -136,7 +141,7 @@
     setTimeout(fn, 1100);
   };
 
-  MemoryMatch.prototype.filter = function (filter, fn) {
+  MemoryMatch.prototype.filterBySelector = function (filter, fn) {
     [].forEach.call(this.el.querySelectorAll(filter), fn);
   };
 
@@ -153,7 +158,7 @@
   };
 
   MemoryMatch.prototype.clearFlippeds = function () {
-    this.filter('td.is-flipped', function (field) {
+    this.filterBySelector('td.is-flipped', function (field) {
       if (!helpers.hasClass(field, 'is-matched')) {
         field.className = "";
       }
