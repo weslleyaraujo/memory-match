@@ -1,4 +1,4 @@
-;(function (root) {
+define([], function () {
 
   var subscriptions = {},
   Mediator = function() {};
@@ -26,6 +26,6 @@
     }
   };
 
-  root.mediator = new Mediator();
+  return new Mediator();
 
-} (window));
+});
