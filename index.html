@@ -2,42 +2,49 @@
   <head>
     <title> MemoryMatch game created with Javascript </title>
 
-    <link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
     <link href="dist/css/main.css" rel="stylesheet" type="text/css"/>
 
   </head>
 
   <body>
+    <div class="ui-header">
+      <div class="ui-header-content g-text-left">
+        <p>MEMORY MATCH</p>
+      </div>
+      <div class="ui-header-content g-text-right">
+        <p>FORK ME ON <a href="#">GITHUB</a></p>
+      </div>
+    </div>
+
+    <div class="screen-lock"></div>
 
     <div class="ui-page is-visible" data-page-name="initial">
-      page one
+      <div class="content text-center">
+          <h1>Memory Match</h1>
+
+          <div class="setup">
+            <label>Choose the dificulty</label><br />
+            <select name="level">
+              <option value="dumb">Dumb</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+              <option value="expert">Expert</option>
+            </select>
+            <br />
+            <button name="start">Start</button>
+          </div>
+
+      </div>
     </div>
 
     <div class="ui-page" data-page-name="game">
-      page two
+      hello, lets play
+      <table class="game"></table>
     </div>
 
-    <!-- <div class="screen-lock"></div> -->
 
-    <!-- <div class="content text-center"> -->
-      <!--     <h1>Memory Match</h1> -->
-
-      <!--     <div class="setup"> -->
-        <!--       <label>Choose the dificulty</label><br /> -->
-        <!--       <select name="level"> -->
-          <!--         <option value="dumb">Dumb</option> -->
-          <!--         <option value="easy">Easy</option> -->
-          <!--         <option value="medium">Medium</option> -->
-          <!--         <option value="hard">Hard</option> -->
-          <!--         <option value="expert">Expert</option> -->
-          <!--       </select> -->
-        <!--       <br /> -->
-        <!--       <button name="start">Start</button> -->
-        <!--     </div> -->
-
-      <!-- </div> -->
-
-    <!-- <table class="game"></table> -->
 
     <!-- <footer> -->
     <!--   <a href="http://twitter.com/_weslleyaraujo" target="_blank">@_weslleyaraujo</a> -->
