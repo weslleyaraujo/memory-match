@@ -12,15 +12,8 @@ define(['shared/mediator', 'jquery'], function (mediator, $) {
     return this;
   };
 
-  window.mediator = mediator;
-
   Pages.prototype.init = function () {
-    this.prepare();
     this.bind();
-  };
-
-  Pages.prototype.prepare = function () {
-    this.$el = $('[data-page-name]');
   };
 
   Pages.prototype.bind = function () {
@@ -32,15 +25,11 @@ define(['shared/mediator', 'jquery'], function (mediator, $) {
   };
 
   Pages.prototype.getCurrent = function (data, filter) {
-    return this.$el.filter(function (index, item) {
-      return $(item).hasClass('is-visible');
-    });
+    return $('[data-page-name].is-visible');
   };
 
   Pages.prototype.getPage = function (name) {
-    return this.$el.filter(function (index, item) {
-      return $(item).attr('data-page-name') == name;
-    });
+    return $('[data-page-name="' + name + '"');
   };
 
   Pages.prototype.change = function ($current, $next, callback) {
@@ -48,7 +37,11 @@ define(['shared/mediator', 'jquery'], function (mediator, $) {
     $next
       .addClass('ui-page--move-from-right')
       .addClass('is-visible')
-      .one(this.config.animationEnd, callback || $.noop);
+      .one(this.config.animationEnd, function () {
+        $next.removeClass('ui-page--move-from-right');
+        $next.removeClass('ui-page--move-to-left');
+        callback();
+      });
   };
 
   return Pages;
