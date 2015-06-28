@@ -1,4 +1,4 @@
-;(function (root, helpers) {
+;(function (root, helpers, Game) {
   var levels = {
     dumb: {
       size: 2,
@@ -52,7 +52,7 @@
 
   App.prototype.init = function (value) {
     this.clear();
-    this.game = new MemoryMatch(this.data);
+    this.game = new Game(this.data);
   };
 
   App.prototype.getData = function (value) {
@@ -68,4 +68,4 @@
     el: '.setup'
   });
 
-} (window, window.helpers));
+} (MemoryMatch, MemoryMatch.helpers, MemoryMatch.Game));

@@ -60,4 +60,4 @@
 
   root.Field = Field;
 
-} (window, window.helpers));
+} (MemoryMatch, MemoryMatch.helpers));

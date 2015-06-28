@@ -13,11 +13,23 @@ module.exports = function (grunt) {
 
   config = {};
 
+  // js files
+  config.js = {};
+  config.js.files = [
+    'src/js/main.js',
+    'src/js/shared/*.js',
+
+    'src/js/field.js',
+    'src/js/memory-match.js',
+    'src/js/app.js'
+  ];
+
   // jshint
   config.jshint = {
     all: {
       src: [
         'Gruntfile.js',
+        'src/js/**/*.js',
         'src/js/*.js'
       ]
     },
@@ -89,13 +101,7 @@ module.exports = function (grunt) {
   // concat
   config.concat = {
     js: {
-      src: [
-        'src/js/helpers.js',
-        'src/js/field.js',
-        'src/js/memory-match.js',
-        'src/js/app.js'
-      ],
-
+      src: config.js.files,
       dest: 'dist/js/application.js'
     }
   };
