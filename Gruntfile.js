@@ -7,8 +7,6 @@ module.exports = function (grunt) {
     'grunt-contrib-jshint',
     'grunt-contrib-watch',
     'grunt-contrib-connect',
-    'grunt-contrib-concat',
-    'grunt-contrib-copy'
   ],
 
   config = {};
@@ -68,7 +66,7 @@ module.exports = function (grunt) {
       files: [
         'src/js/*.js',
       ],
-      tasks: ['concat:js']
+      tasks: [''] // some task
     }
   };
 
@@ -98,29 +96,6 @@ module.exports = function (grunt) {
     }
   };
 
-  // concat
-  config.concat = {
-    js: {
-      src: config.js.files,
-      dest: 'dist/js/application.js'
-    }
-  };
-
-  // copy
-  config.copy = {
-    fonts: {
-      files: [
-        {
-          cwd: 'src',
-          expand: true,
-          src: ['fonts/**/*.{eot,svg,ttf,woff,woff2}'],
-          dest: 'dist/'
-        },
-      ]
-    }
-  };
-
-
   // config
   grunt.initConfig(config);
 
@@ -132,8 +107,6 @@ module.exports = function (grunt) {
     'sass',
     'postcss',
     'jshint:all',
-    'concat:js',
-    'copy',
     'connect',
     'watch'
   ]);

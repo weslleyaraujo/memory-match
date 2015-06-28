@@ -1,12 +1,13 @@
 /*
  * Main file for global configs
- * */
-
-window.MemoryMatch = {};
-
-/*
- * Helpers for anything goes in this object
  *
  * */
+requirejs.config({
+  baseUrl: 'src/js',
+  paths: {
+    jquery: 'vendor/jquery/dist/jquery'
+  }
+});
 
-MemoryMatch.helpers = {};
+
+requirejs(['app']);
