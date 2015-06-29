@@ -1,71 +1,185 @@
-;(function (root, helpers, Game) {
-  var levels = {
-    dumb: {
-      size: 2,
-    },
+define([
+    'shared/mediator'
 
-    easy: {
-      size: 4,
-    },
+], function(mediator) {
 
-    medium: {
-      size: 6,
-    },
+  function MemoryMatch (options) {
+    this.options = options;
+    // this.prepare();
+    this.bind();
+    // this.start();
+    // this.render();
+    return this;
+  }
 
-    hard: {
-      size: 4,
-    },
-    expert: {
-      size: 10,
+  MemoryMatch.prototype.bind = function () {
+    mediator.subscribe('memory-match:create', $.proxy(this.onCreate, this));
+  };
+
+  MemoryMatch.prototype.onCreate = function (data) {
+    console.log(data);
+    debugger;
+  };
+
+  MemoryMatch.prototype.prepare = function (level) {
+    this.$el = $('[data-component="board"]');
+    this.$locker = $('[data-component="locker"]');
+    this.clicks = {};
+    this.matches = 0;
+    this.createChars();
+  };
+
+  MemoryMatch.prototype.createChars = function () {
+    this.characters = [];
+    this.size = (this.options.x * this.options.y);
+
+    this.cards = this.getArray(this.size / 2).map(function () {
+      this.createUnique();
+      return {
+        times: 0,
+        name: this.actualChar
+      };
+
+    }.bind(this));
+  };
+
+  MemoryMatch.prototype.createUnique = function () {
+      this.actualChar = helpers.getName(this.options.charSize);
+
+      while (this.characters.indexOf(this.actualChar) > 0) {
+        this.actualChar = helpers.getName(this.options.charSize);
+      }
+
+      this.characters.push(this.actualChar);
+  };
+
+  MemoryMatch.prototype.render = function () {
+    this.table.forEach(function (element) {
+      this.$el.appendChild(element);
+    }.bind(this));
+  };
+
+  MemoryMatch.prototype.start = function () {
+    this.table = this.getArray(this.options.x).map(function () {
+      var el = document.createElement('tr'),
+      field,
+      actual;
+
+    this.getArray(this.options.y).map(function (value, index) {
+      this.clearCard();
+      actual = helpers.getRange(0, this.cards.length);
+
+      this.cards[actual].times++;
+
+      field = new Field({
+        name: this.cards[actual].name,
+        id: this.cards[actual].name + '-' + helpers.getName(this.options.charSize)
+      });
+
+      field.registerClickCallback(this.afterActive.bind(this));
+
+      el.appendChild(field.el);
+    }.bind(this));
+
+    return el;
+
+    }.bind(this));
+  };
+
+  MemoryMatch.prototype.afterActive = function (field) {
+    if (this.clicks.last) {
+      this.setClickValue('current', field);
+      this.resultHandler();
+      return;
+    }
+
+    this.setClickValue('last', field);
+  };
+
+  MemoryMatch.prototype.lockScreen = function () {
+    this.$locker.addClass('is-active');
+  };
+
+  MemoryMatch.prototype.unlockScreen = function () {
+    this.$locker.removeClass('is-active');
+  };
+
+  MemoryMatch.prototype.resultHandler = function () {
+    if (!this.isClickValid()) {
+      return;
+    }
+
+    this.lockScreen();
+    this.reveal(function () {
+      if (this.isMatch()) {
+        this.matches++;
+        this.setMatched();
+        this.unlockScreen();
+        this.clicks = {};
+        this.afterMatch();
+        return;
+      }
+
+      this.clearFlippeds();
+      this.unlockScreen();
+
+    }.bind(this));
+  };
+
+  MemoryMatch.prototype.afterMatch = function () {
+    if (this.matches == (this.size / 2)) {
+      this.wonHanlder();
     }
   };
 
-  function App (options) {
-    this.options = options;
-    this.prepare();
-    this.bind();
-  }
-
-  App.prototype.prepare = function () {
-    this.el = document.querySelector(this.options.el);
-    this.level = this.el.querySelector('[name="level"]');
-    this.start = this.el.querySelector('[name="start"]');
-    this.game = null;
+  MemoryMatch.prototype.wonHanlder = function () {
+    alert('you won!');
   };
 
-  App.prototype.bind = function () {
-    this.start.addEventListener('click', this.onClickStart.bind(this), false);
+  MemoryMatch.prototype.setMatched = function (fn) {
+    this.$el.find(this.getClicksSelector()).addClass('is-matched');
   };
 
-  App.prototype.onClickStart = function (event) {
-    this.clear();
-    this.data = this.getData(this.level.value);
-    this.init();
-    return false;
+  MemoryMatch.prototype.getClicksSelector = function () {
+    return '#' + this.clicks.last.id + ' ,#' + this.clicks.current.id;
   };
 
-  App.prototype.clear = function (value) {
-    try {
-      this.game.el.innerHTML = "";
-    } catch (e) {}
+  MemoryMatch.prototype.reveal = function (fn) {
+    this.$el.find('td.is-active').addClass('is-flipped');
+
+    // change it to animation over
+    setTimeout(fn, 1100);
   };
 
-  App.prototype.init = function (value) {
-    this.clear();
-    this.game = new Game(this.data);
+  MemoryMatch.prototype.isMatch = function () {
+    return (this.clicks.last.name === this.clicks.current.name);
   };
 
-  App.prototype.getData = function (value) {
-    return {
-      x: levels[value].size,
-      y: levels[value].size,
-      el: 'table',
-      lock: '.screen-lock'
-    };
+  MemoryMatch.prototype.isClickValid = function () {
+    return this.clicks.last.id !== this.clicks.current.id;
   };
 
-  root.App = new App({
-    el: '.setup'
-  });
+  MemoryMatch.prototype.setClickValue = function (key, values) {
+    this.clicks[key] = values;
+  };
 
-} (MemoryMatch, MemoryMatch.helpers, MemoryMatch.Game));
+  MemoryMatch.prototype.clearFlippeds = function () {
+    this.$el.find('td.is-flipped').removeClass('is-matched');
+    this.clicks = {};
+  };
+
+  MemoryMatch.prototype.clearCard = function () {
+    this.cards = this.cards.filter(function (card) {
+      return card.times < 2;
+    });
+  };
+
+  MemoryMatch.prototype.getArray = function (length) {
+    return Array.apply(null, {
+      length: length
+    });
+  };
+
+  return MemoryMatch;
+
+});

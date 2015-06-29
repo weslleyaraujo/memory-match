@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <div class="ui-screen-lock"></div>
+    <div class="ui-screen-lock" data-component="locker"></div>
 
     <header class="ui-header">
       <div class="ui-header-content g-text-left">
@@ -19,55 +19,34 @@
       </div>
     </header>
 
-    <div class="ui-page" data-page-name="initial">
+    <div class="ui-page is-visible" data-page-name="initial">
       <div class="ui-page-content g-text-center">
-
         <h1>Memory Match</h1>
         <div class="l-max-w">
           <p>Select a level to start:</p>
-          <div class="ui-inputs-wrap">
-            <select name="level" class="ui-inputs">
-              <option value="dumb"></option>
-              <option value="dumb">Dumb</option>
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-              <option value="expert">Expert</option>
-            </select>
-            <i class="ui-icon-circle-down"></i>
-          </div>
-          <button name="start" class="ui-inputs">Start</button>
+          <form data-component="initial-form">
+            <div class="ui-inputs-wrap">
+              <select name="level" class="ui-inputs">
+                <option value="dumb"></option>
+                <option value="dumb">Dumb</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+                <option value="expert">Expert</option>
+              </select>
+              <i class="ui-icon-circle-down"></i>
+            </div>
+            <button name="start" class="ui-inputs">Start</button>
+          </form>
         </div>
 
       </div>
     </div>
 
-    <div class="ui-page is-visible " data-page-name="game">
+    <div class="ui-page" data-page-name="game">
       <div class="ui-page-content g-text-center">
-        <table class="ui-board">
-          <tr>
-            <td class="ui-inputs">
-              <figure></figure>
-            </td>
-            <td class="ui-inputs">
-              <figure></figure>
-            </td>
-            <td class="ui-inputs">
-              <figure></figure>
-            </td>
-            <td class="ui-inputs">
-              <figure></figure>
-            </td>
-            <td class="ui-inputs">
-              <figure></figure>
-            </td>
-            <td class="ui-inputs">
-              <figure></figure>
-            </td>
-            <td class="ui-inputs">
-              <figure></figure>
-            </td>
-          </tr>
+        <h2>Playing mode</h2>
+        <table class="ui-board" data-component="board">
         </table>
       </div>
     </div>
