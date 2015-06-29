@@ -1,0 +1,38 @@
+// ******************
+// ui-inputs
+// ***
+
+$module-name: 'ui-inputs'
+$module-height: 45px
+
+.#{$module-name}
+  border-radius: 0
+  border: none
+  padding: 10px 75px
+  font-size: 16px
+  color: $color-reading
+  background-color: $color-light
+  text-align: center
+  appearance: none
+  box-shadow: 0 3px 0 rgba(0,0,0,0.1)
+  height: $module-height
+  font-family: $font-family-default
+  width: 100%
+  margin: 10px 0
+
+.#{$module-name}-wrap
+  position: relative
+  width: 100%
+  height: 45px
+  margin: 10px 0
+  .#{$module-name}
+    position: absolute
+    left: 0
+    top: 0
+    margin: 0
+    padding-left: 10px
+  i
+    position: absolute
+    z-index: 1
+    top: 15px
+    right: 10px

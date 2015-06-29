@@ -2,39 +2,42 @@
   <head>
     <title> MemoryMatch game created with Javascript </title>
 
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>:w
     <link href="dist/css/main.css" rel="stylesheet" type="text/css"/>
 
   </head>
 
   <body>
-    <div class="ui-header">
+    <div class="ui-screen-lock"></div>
+
+    <header class="ui-header">
       <div class="ui-header-content g-text-left">
         <p>MEMORY MATCH</p>
       </div>
       <div class="ui-header-content g-text-right">
-        <p>FORK ME ON <a href="#">GITHUB</a></p>
+        <a href="#" class="ui-header-link"> <i class="ui-icon-github4"></i> FORK ME ON GITHUB </a>
       </div>
-    </div>
+    </header>
 
-    <div class="screen-lock"></div>
+    <div class="ui-page is-visible " data-page-name="initial">
+      <div class="ui-page-content g-text-center">
 
-    <div class="ui-page is-visible" data-page-name="initial">
-      <div class="content text-center">
-          <h1>Memory Match</h1>
-
-          <div class="setup">
-            <label>Choose the dificulty</label><br />
-            <select name="level">
+        <h1>Memory Match</h1>
+        <div class="l-max-w">
+          <p>Select a level to start:</p>
+          <div class="ui-inputs-wrap">
+            <select name="level" class="ui-inputs">
+              <option value="dumb"></option>
               <option value="dumb">Dumb</option>
               <option value="easy">Easy</option>
               <option value="medium">Medium</option>
               <option value="hard">Hard</option>
               <option value="expert">Expert</option>
             </select>
-            <br />
-            <button name="start">Start</button>
+            <i class="ui-icon-circle-down"></i>
           </div>
+          <button name="start" class="ui-inputs">Start</button>
+        </div>
 
       </div>
     </div>
