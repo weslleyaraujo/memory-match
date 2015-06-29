@@ -1,75 +1,49 @@
 define([
-    'lib/page',
-    'lib/memory-match',
+    'lib/pages',
 
     'shared/levels',
     'shared/mediator'
 
-], function(Pages, MemoryMatch, levels, mediator) {
+], function(pages, levels, mediator) {
 
-  var game = {};
+  return $.extend(pages, {
+  
+    init: function () {
+      this.prepare();
+      this.bind();
+    },
 
-  game.init = function () {
-    this.prepare();
-    this.bind();
-    this.pages.init();
-  };
+    prepare: function () {
+      this.elements = {};
+      this.elements.$form = $('[data-component="initial-form"]');
+    },
 
-  game.prepare = function () {
-    // start deps
-    this.pages = new Pages();
-    this.memory = new MemoryMatch();
+    bind: function () {
+      this.elements.$form.on('submit', $.proxy(this.onSubmit, this));
+    },
 
-    // dom elements
-    this.elements = {};
-    this.elements.$form = $('[data-component="initial-form"]');
-  };
+    getLevel: function () {
+      return this.elements.$form.find('[name="level"]').val();
+    },
 
-  game.bind = function () {
-    this.elements.$form.on('submit', $.proxy(this.onSubmit, this));
-  };
+    onSubmit: function (event) {
+      this.changePage('game').done($.proxy(this.onPageChange, this));
+      event.preventDefault();
+    },
 
-  game.getLevel = function () {
-    return this.elements.$form.find('[name="level"]').val();
-  };
+    getData: function () {
+      var value = this.getLevel();
 
-  game.onSubmit = function (event) {
-    this.send();
-    event.preventDefault();
-  };
+      return {
+        x: levels[value].size,
+        y: levels[value].size,
+      }
+    },
 
-  game.getData = function (value) {
-    var value = this.getLevel();
-
-    return {
-      x: levels[value].size,
-      y: levels[value].size,
-    }
-  };
-
-  game.send = function () {
-    mediator.publish('pages:change', {
-      name: 'game',
-      callback: $.proxy(this.onPageChange, this)
-    });
-  };
-
-  game.onPageChange = function () {
-    mediator.publish('memory-match:create', {
-      level: this.getData()
-    });
-  };
-
-  // return $.extend(pages, {
-
-  //   config: {
-  //           
-  //   },
-  // 
-  //   init: function () {
-  //     this.prepare();
-  //     this.bind();
-  //   }
-  // });
+    onPageChange: function () {
+      console.log('page change!', this);
+      debugger;
+    },
+  });
 
 });
