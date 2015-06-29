@@ -1,21 +1,22 @@
 // ******************
-// game
+// ui-board
 //
-// <table class="game"> ... </table>
+// <table class="ui-board"> ... </table>
 // ***
 
-$module-name: 'game'
+$module-name: 'ui-board'
+$module-item-height: 50px
 
 .#{$module-name}
   margin: 0 auto
   font-family: $font-family-icon
   font-size: $font-size-icon
+  width: 100%
+  max-width: 480px
   perspective: 100%
-
   td
-    background-color: map-get($colors, 0)
-    height: 50px
-    line-height: 50px
+    height: $module-item-height
+    line-height: $module-item-height
     padding: 15px 20px
     position: relative
     text-align: center

@@ -2,9 +2,9 @@
   <head>
     <title> MemoryMatch game created with Javascript </title>
 
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>:w
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <link href="dist/css/main.css" rel="stylesheet" type="text/css"/>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   </head>
 
   <body>
@@ -15,11 +15,11 @@
         <p>MEMORY MATCH</p>
       </div>
       <div class="ui-header-content g-text-right">
-        <a href="#" class="ui-header-link"> <i class="ui-icon-github4"></i> FORK ME ON GITHUB </a>
+        <a target="_blank" href="https://github.com/weslleyaraujo/memory-match/" class="ui-header-link"> <i class="ui-icon-github4"></i> FORK ME ON GITHUB </a>
       </div>
     </header>
 
-    <div class="ui-page is-visible " data-page-name="initial">
+    <div class="ui-page" data-page-name="initial">
       <div class="ui-page-content g-text-center">
 
         <h1>Memory Match</h1>
@@ -42,11 +42,35 @@
       </div>
     </div>
 
-    <div class="ui-page" data-page-name="game">
-      hello, lets play
-      <table class="game"></table>
+    <div class="ui-page is-visible " data-page-name="game">
+      <div class="ui-page-content g-text-center">
+        <table class="ui-board">
+          <tr>
+            <td class="ui-inputs">
+              <figure></figure>
+            </td>
+            <td class="ui-inputs">
+              <figure></figure>
+            </td>
+            <td class="ui-inputs">
+              <figure></figure>
+            </td>
+            <td class="ui-inputs">
+              <figure></figure>
+            </td>
+            <td class="ui-inputs">
+              <figure></figure>
+            </td>
+            <td class="ui-inputs">
+              <figure></figure>
+            </td>
+            <td class="ui-inputs">
+              <figure></figure>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
-
 
 
     <!-- <footer> -->
