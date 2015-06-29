@@ -25,9 +25,10 @@ define(['jquery'], function ($) {
 
     changePage: function(name) {
       var deferred = $.Deferred(),
-          $next = this.getPage(name);
+          $next = this.getPage(name),
+          $current = this.getCurrentPage();
 
-      this.hideCurrentPage();
+      $current.addClass(this.config.previousClass)
 
       $next
         .addClass(this.config.nextClass)
@@ -36,18 +37,12 @@ define(['jquery'], function ($) {
           $next
             .removeClass(this.config.nextClass)
             .removeClass(this.config.previousClass);
+          $current.removeClass(this.config.visibleClass)
+
           deferred.resolve();
         }, this));
 
       return deferred.promise();
-    },
-
-    hideCurrentPage: function () {
-      var $current = this.getCurrentPage();
-
-      $current
-        .addClass(this.config.previousClass)
-        .removeClass(this.config.visibleClass);
     }
   };
 
