@@ -1,4 +1,3 @@
-define(['lib/game'], function (Game) {
-  var game = new Game();
+define(['lib/game'], function (game) {
   game.init();
 });
