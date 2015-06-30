@@ -7,19 +7,30 @@ define([
   function Field(options) {
     this.options = options;
     this.prepare();
+    this.bind();
   }
 
   Field.prototype.prepare = function () {
     this.name = this.options.name;
     this.id = this.options.name + '-' + getRandomChar();
+
     this.elementsHandler();
   };
 
   Field.prototype.bind = function () {
-    this.$el.on('click', $.proxy(this.onClick, this));
+    this.elements.$el.on('click', $.proxy(this.onClick, this));
   };
 
   Field.prototype.onClick = function (event) {
+    var $target = $(event.currentTarget);
+
+    if ($target.hasClass('is-active')) {
+      $target.removeClass('is-active');
+      return;
+    }
+
+    $target.addClass('is-active');
+
     event.preventDefault();
   };
 

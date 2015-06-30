@@ -19,7 +19,7 @@ define([
     prepare: function () {
       this.elements = {};
       this.elements.$el = $('[data-component="board"]');
-      this.$locker = $('[data-component="locker"]');
+      this.elements.$locker = $('[data-component="locker"]');
     },
 
     bind: function () {
