@@ -66,20 +66,13 @@ define([
     },
 
     createLine: function (size, $line) {
-      var actual,
-          field,
-          $line = createElement('tr');
+      var $line = createElement('tr');
 
       createArray(size).map($.proxy(function () {
         this.clearCardList();
-        actual = getRange(0, this.cards.length);
-        this.cards[actual].times++;
-
-        field = new Field ({
-          name: this.cards[actual].name
-        });
-
-        $line.append(field.elements.$el);
+        this.actual = getRange(0, this.cards.length);
+        this.increaseCardTimes();
+        $line.append(this.getFieldElement());
       }, this));
 
       return $line;
@@ -93,6 +86,20 @@ define([
 
     render: function (size) {
       this.elements.$el.html(this.board);
+    },
+
+    increaseCardTimes: function () {
+      this.cards[this.actual].times++;
+    },
+
+    getActualCardName: function () {
+      return this.cards[this.actual].name;
+    },
+
+    getFieldElement: function () {
+      return new Field({
+        name: this.getActualCardName()
+      }).elements.$el;
     }
 
   });
