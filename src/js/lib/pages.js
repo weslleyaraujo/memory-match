@@ -23,30 +23,31 @@ define(['jquery'], function ($) {
       return $('[data-page-name="' + name + '"');
     },
 
-    changePage: function(name) {
-      var deferred = $.Deferred(),
-          $next = this.getPage(name),
-          $current = this.getCurrentPage();
+    hideCurrentPage: function (name) {
+      this.$currentPage.addClass(this.config.previousClass);
+    },
 
-      $current.addClass(this.config.previousClass);
-
-      // TODO: refactor into single methods
-      $next
+    showNextPage: function (callback) {
+      this.$nextPage
         .addClass(this.config.nextClass)
         .addClass(this.config.visibleClass)
-        .one(this.config.animationEnd, $.proxy(function () {
+        .one(this.config.animationEnd, $.proxy(callback, this));
+    },
 
-          $next
-            .removeClass(this.config.nextClass)
-            .removeClass(this.config.previousClass);
+    changePage: function(name) {
+      this.deferred = $.Deferred();
+      this.$nextPage = this.getPage(name);
+      this.$currentPage = this.getCurrentPage();
 
-          $current.removeClass(this.config.visibleClass);
+      this.hideCurrentPage();
 
-          deferred.resolve();
+      this.showNextPage(function () {
+        this.$nextPage.removeClass(this.config.previousClass);
+        this.$currentPage.removeClass(this.config.visibleClass);
+        this.deferred.resolve();
+      });
 
-        }, this));
-
-      return deferred.promise();
+      return this.deferred.promise();
     }
   };
 
