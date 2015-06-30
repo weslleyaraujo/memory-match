@@ -1,12 +1,15 @@
 define([
-    'lib/pages',
+  'lib/field',
+  'lib/pages',
+  'shared/mediator',
+  'shared/create-array',
+  'shared/get-random-char',
+  'shared/get-range',
+  'shared/create-element',
 
-    'shared/levels',
-    'shared/mediator'
+], function(Field, pages, mediator, createArray, getRandomChar, getRange, createElement) {
 
-], function(pages, levels, mediator) {
-
-  return $.extend(pages, {
+  return $.extend({}, pages, {
   
     init: function () {
       this.prepare();
@@ -15,35 +18,83 @@ define([
 
     prepare: function () {
       this.elements = {};
-      this.elements.$form = $('[data-component="initial-form"]');
+      this.elements.$el = $('[data-component="board"]');
+      this.$locker = $('[data-component="locker"]');
     },
 
     bind: function () {
-      this.elements.$form.on('submit', $.proxy(this.onSubmit, this));
+      mediator.subscribe('game:start', this.onGameStart, this);
     },
 
-    getLevel: function () {
-      return this.elements.$form.find('[name="level"]').val();
+    onGameStart: function (data) {
+      this.options = data;
+      this.start();
     },
 
-    onSubmit: function (event) {
-      this.changePage('game').done($.proxy(this.onPageChange, this));
-      event.preventDefault();
+    start: function (data) {
+      this.characters = [];
+      this.size = (this.options.x * this.options.y);
+      this.generateCharacters();
+      this.generateBoard();
+
+      this.render();
     },
 
-    getData: function () {
-      var value = this.getLevel();
+    generateBoard: function () {
+      this.board = createArray(this.options.x).map($.proxy(this.createLine, this, this.options.y));
+    },
 
-      return {
-        x: levels[value].size,
-        y: levels[value].size,
+    generateCharacters: function () {
+      this.cards = createArray(this.size / 2).map($.proxy(function () {
+        return {
+          times: 0,
+          name: this.getUniqueChar()
+        }
+      }, this));
+    },
+
+    getUniqueChar: function () {
+      var character = getRandomChar();
+
+      while (this.characters.indexOf(character) >= 0) {
+        character = getRandomChar();
       }
+
+      this.characters.push(character);
+
+      return character;
     },
 
-    onPageChange: function () {
-      console.log('page change!', this);
-      debugger;
+    createLine: function (size, $line) {
+      var actual,
+          field,
+          $line = createElement('tr');
+
+      createArray(size).map($.proxy(function () {
+        this.clearCardList();
+        actual = getRange(0, this.cards.length);
+        this.cards[actual].times++;
+
+        field = new Field ({
+          name: this.cards[actual].name
+        });
+
+        $line.append(field.elements.$el);
+      }, this));
+
+      return $line;
     },
+
+    clearCardList: function (size) {
+      this.cards = this.cards.filter(function (card) {
+        return card.times < 2;
+      });
+    },
+
+    render: function (size) {
+      this.elements.$el.html(this.board);
+    }
+
   });
 
 });

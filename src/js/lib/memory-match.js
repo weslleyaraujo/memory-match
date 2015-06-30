@@ -65,23 +65,23 @@ define([
       field,
       actual;
 
-    this.getArray(this.options.y).map(function (value, index) {
-      this.clearCard();
-      actual = helpers.getRange(0, this.cards.length);
+      this.getArray(this.options.y).map(function (value, index) {
+        this.clearCard();
+        actual = helpers.getRange(0, this.cards.length);
 
-      this.cards[actual].times++;
+        this.cards[actual].times++;
 
-      field = new Field({
-        name: this.cards[actual].name,
-        id: this.cards[actual].name + '-' + helpers.getName(this.options.charSize)
-      });
+        field = new Field({
+          name: this.cards[actual].name,
+          id: this.cards[actual].name + '-' + helpers.getName(this.options.charSize)
+        });
 
-      field.registerClickCallback(this.afterActive.bind(this));
+        field.registerClickCallback(this.afterActive.bind(this));
 
-      el.appendChild(field.el);
-    }.bind(this));
+        el.appendChild(field.el);
+      }.bind(this));
 
-    return el;
+      return el;
 
     }.bind(this));
   };

@@ -1,63 +1,48 @@
-;(function (root, helpers) {
+define([
+  'shared/create-element',
+  'shared/get-random-char',
 
-  function Field (options) {
+], function(createElement, getRandomChar) {
+
+  function Field(options) {
     this.options = options;
     this.prepare();
-    this.bind();
-    this.start();
-    return this;
   }
 
+  Field.prototype.prepare = function () {
+    this.name = this.options.name;
+    this.id = this.options.name + '-' + getRandomChar();
+    this.elementsHandler();
+  };
+
   Field.prototype.bind = function () {
-    this.el.addEventListener('click', this.onClick.bind(this), false);
+    this.$el.on('click', $.proxy(this.onClick, this));
   };
 
   Field.prototype.onClick = function (event) {
-    var target = event.currentTarget;
+    event.preventDefault();
+  };
 
-    if (helpers.hasClass(target, 'is-active')) {
-      helpers.removeClass(target, 'is-active');
-      return;
-    }
-
-    helpers.addClass(target, 'is-active');
-
-    this.afterClick({
-      id: this.id,
-      name: this.name
+  Field.prototype.elementsHandler = function () {
+    this.elements = {};
+    this.elements.$el = createElement('td', {
+      id: this.options.id
     });
 
-    return false;
+    this.elements.$back = createElement('figure', {
+      class: 'is-back ui-inputs',
+      text: this.name
+    });
+    this.elements.$front = createElement('figure', {
+      class: 'is-front ui-inputs'
+    });
+
+    // append into main element
+    this.elements.$el.append(this.elements.$back, this.elements.$front);
+
   };
 
-  Field.prototype.registerClickCallback = function (fn) {
-    this.afterClick = fn;
-  };
 
-  Field.prototype.createElements = function () {
-    this.front = document.createElement('figure');
-    this.back  = document.createElement('figure');
-    this.el    = document.createElement('td');
+  return Field;
 
-    this.front.className = 'is-front';
-    this.back.className = 'is-back';
-
-    this.el.appendChild(this.front);
-    this.el.appendChild(this.back);
-  };
-
-  Field.prototype.prepare = function () {
-    this.createElements();
-    this.name = this.options.name;
-    this.el.id = this.options.id;
-    this.id = this.options.id;
-  };
-
-  Field.prototype.start = function () {
-    this.back.innerHTML = this.name;
-    this.front.innerHTML = "";
-  };
-
-  root.Field = Field;
-
-} (MemoryMatch, MemoryMatch.helpers));
+});

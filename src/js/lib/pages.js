@@ -28,18 +28,22 @@ define(['jquery'], function ($) {
           $next = this.getPage(name),
           $current = this.getCurrentPage();
 
-      $current.addClass(this.config.previousClass)
+      $current.addClass(this.config.previousClass);
 
+      // TODO: refactor into single methods
       $next
         .addClass(this.config.nextClass)
         .addClass(this.config.visibleClass)
         .one(this.config.animationEnd, $.proxy(function () {
+
           $next
             .removeClass(this.config.nextClass)
             .removeClass(this.config.previousClass);
-          $current.removeClass(this.config.visibleClass)
+
+          $current.removeClass(this.config.visibleClass);
 
           deferred.resolve();
+
         }, this));
 
       return deferred.promise();
