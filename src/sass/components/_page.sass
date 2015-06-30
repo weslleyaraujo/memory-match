@@ -21,7 +21,7 @@ $module-name: 'ui-page'
     visibility: visible
     z-index: 1
  
-  // modified
+  // modifier
   &.#{$module-name}--move-to-left
     animation: move-to-left .6s ease both
 
@@ -32,3 +32,7 @@ $module-name: 'ui-page'
   position: relative
   top: 50%
   transform: translateY(-50%)
+
+// modifier theme
+.#{$module-name}--secondary
+  background-color: map-get($colors, 1)

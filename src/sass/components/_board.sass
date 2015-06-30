@@ -14,6 +14,11 @@ $module-item-height: 50px
   width: 100%
   max-width: 480px
   perspective: 100%
+  opacity: 0
+
+  // modifier
+  &.#{$module-name}--slide-in-fade
+    animation: slide-in-fade .6s ease both
   td
     height: $module-item-height
     line-height: $module-item-height
@@ -64,3 +69,4 @@ $module-item-height: 50px
     &.is-back 
       background-color: #DEDEDE
       transform: rotateY(180deg)
+

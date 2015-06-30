@@ -85,7 +85,7 @@ define([
     },
 
     render: function (size) {
-      this.elements.$el.html(this.board);
+      this.elements.$el.html(this.board).addClass('ui-board--slide-in-fade');
     },
 
     increaseCardTimes: function () {
