@@ -20,7 +20,7 @@ define(['jquery'], function ($) {
     },
 
     getPage: function (name) {
-      return $('[data-page-name="' + name + '"');
+      return $('[data-page-name="' + name + '"]');
     },
 
     hideCurrentPage: function (name) {
