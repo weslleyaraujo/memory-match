@@ -1,18 +1,14 @@
-define(['jquery'], function ($) {
+define([
+  'jquery',
+  'shared/animation-end',
+], function ($, animationEnd) {
 
   return {
 
     config: {
       visibleClass: 'is-visible',
       previousClass: 'ui-page--move-to-left',
-      nextClass: 'ui-page--move-from-right',
-
-      animationEnd: [
-        'webkitAnimationEnd',
-        'oanimationend',
-        'msAnimationEnd',
-        'animationend',
-      ].join(' ')
+      nextClass: 'ui-page--move-from-right'
     },
 
     getCurrentPage: function (data, filter) {
@@ -31,7 +27,7 @@ define(['jquery'], function ($) {
       this.$nextPage
         .addClass(this.config.nextClass)
         .addClass(this.config.visibleClass)
-        .one(this.config.animationEnd, $.proxy(callback, this));
+        .one(animationEnd, $.proxy(callback, this));
     },
 
     changePage: function(name) {

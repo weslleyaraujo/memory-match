@@ -1,8 +1,9 @@
 define([
   'shared/create-element',
   'shared/get-random-char',
+  'shared/mediator',
 
-], function(createElement, getRandomChar) {
+], function(createElement, getRandomChar, mediator) {
 
   function Field(options) {
     this.options = options;
@@ -31,7 +32,16 @@ define([
 
     $target.addClass('is-active');
 
+    this.afterClick();
+
     event.preventDefault();
+  };
+
+  Field.prototype.afterClick = function () {
+    mediator.publish('field:click', {
+      id: this.id,
+      name: this.name
+    });
   };
 
   Field.prototype.elementsHandler = function () {

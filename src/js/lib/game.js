@@ -6,10 +6,14 @@ define([
   'shared/get-random-char',
   'shared/get-range',
   'shared/create-element',
+  'shared/animation-end',
 
-], function(Field, pages, mediator, createArray, getRandomChar, getRange, createElement) {
+], function(Field, pages, mediator, createArray, getRandomChar, getRange, createElement, animationEnd) {
 
   return $.extend({}, pages, {
+    config: {
+      flipAnimationTime: 1000
+    },
   
     init: function () {
       this.prepare();
@@ -17,6 +21,8 @@ define([
     },
 
     prepare: function () {
+      this.characters = [];
+      this.clicks = {};
       this.elements = {};
       this.elements.$el = $('[data-component="board"]');
       this.elements.$locker = $('[data-component="locker"]');
@@ -24,6 +30,51 @@ define([
 
     bind: function () {
       mediator.subscribe('game:start', this.onGameStart, this);
+      mediator.subscribe('field:click', this.onFieldClick, this);
+    },
+
+    onFieldClick: function (data) {
+      if(this.isLastClick()) {
+        this.recordClick('current', data);
+        this.onBothClicks();
+        return;
+      }
+
+      this.recordClick('last', data);
+    },
+
+    onBothClicks: function () {
+      if(!this.isClicksValid()) {
+        return;
+      }
+
+      // TODO: should lock screen here
+      this.revealCards();
+    },
+
+    isClicksValid: function (key, data) {
+      return this.clicks.last.id !== this.clicks.current.id;
+    },
+
+    isLastClick: function (key, data) {
+      return !!this.clicks.last;
+    },
+
+    recordClick: function (key, data) {
+      this.clicks[key] = data;
+    },
+
+    afterReveal: function () {
+      console.log(this.isMatch());
+    },
+
+    isMatch: function () {
+      return (this.clicks.last.name === this.clicks.current.name);
+    },
+
+    revealCards: function () {
+      this.elements.$el.find('td.is-active').addClass('is-flipped');
+      setTimeout($.proxy(this.afterReveal, this), this.config.flipAnimationTime);
     },
 
     onGameStart: function (data) {
@@ -32,7 +83,6 @@ define([
     },
 
     start: function (data) {
-      this.characters = [];
       this.size = (this.options.x * this.options.y);
       this.generateCharacters();
       this.generateBoard();
