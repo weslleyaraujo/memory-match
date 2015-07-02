@@ -53,11 +53,11 @@ define([
       this.revealCards();
     },
 
-    isClicksValid: function (key, data) {
+    isClicksValid: function () {
       return this.clicks.last.id !== this.clicks.current.id;
     },
 
-    isLastClick: function (key, data) {
+    isLastClick: function () {
       return !!this.clicks.last;
     },
 
@@ -70,7 +70,7 @@ define([
     },
 
     unflipCards: function () {
-      this.elements.$el.find('td.is-flipped').removeClass('is-flipped is-active')
+      this.elements.$el.find('td.is-flipped').removeClass('is-flipped is-active');
     },
 
     addMatch: function () {
@@ -150,7 +150,7 @@ define([
         return {
           times: 0,
           name: this.getUniqueChar()
-        }
+        };
       }, this));
     },
 
@@ -166,7 +166,7 @@ define([
       return character;
     },
 
-    createLine: function (size, $line) {
+    createLine: function (size) {
       var $line = createElement('tr');
 
       createArray(size).map($.proxy(function () {
