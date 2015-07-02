@@ -1,7 +1,9 @@
 define([
     'lib/opening',
     'lib/game',
-], function (opening, game) {
+    'lib/locker',
+], function (opening, game, locker) {
+  locker.init();
   opening.init();
   game.init();
 });

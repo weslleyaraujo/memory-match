@@ -13,7 +13,7 @@ define([
 
   Field.prototype.prepare = function () {
     this.name = this.options.name;
-    this.id = this.options.name + '-' + getRandomChar();
+    this.id = this.options.name + '-' + getRandomChar(10);
 
     this.elementsHandler();
   };
@@ -47,7 +47,7 @@ define([
   Field.prototype.elementsHandler = function () {
     this.elements = {};
     this.elements.$el = createElement('td', {
-      id: this.options.id
+      id: this.id
     });
 
     this.elements.$back = createElement('figure', {

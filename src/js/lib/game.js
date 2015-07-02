@@ -12,7 +12,8 @@ define([
 
   return $.extend({}, pages, {
     config: {
-      flipAnimationTime: 1000
+      el: '[data-component="board"]',
+      flipAnimationTime: 1000,
     },
   
     init: function () {
@@ -21,11 +22,11 @@ define([
     },
 
     prepare: function () {
+      this.matches = 0;
       this.characters = [];
       this.clicks = {};
       this.elements = {};
-      this.elements.$el = $('[data-component="board"]');
-      this.elements.$locker = $('[data-component="locker"]');
+      this.elements.$el = $(this.config.el);
     },
 
     bind: function () {
@@ -48,7 +49,7 @@ define([
         return;
       }
 
-      // TODO: should lock screen here
+      mediator.publish('locker:active');
       this.revealCards();
     },
 
@@ -64,12 +65,62 @@ define([
       this.clicks[key] = data;
     },
 
+    clearClicks: function () {
+      this.clicks = {};
+    },
+
+    unflipCards: function () {
+      this.elements.$el.find('td.is-flipped').removeClass('is-flipped is-active')
+    },
+
+    addMatch: function () {
+      this.matches++;
+    },
+
     afterReveal: function () {
-      console.log(this.isMatch());
+      if(this.isMatch()) {
+        this.afterMatched();
+        return;
+      }
+
+      this.clearClicks();
+      this.unflipCards();
+      this.removeLocker();
+    },
+
+    afterMatched: function () {
+      this.addMatch();
+      this.flagMatchs();
+      this.clearClicks();
+      this.removeLocker();
+
+      if(this.isWinner()) {
+        this.onWonGame();
+      }
+    },
+
+    removeLocker: function() {
+      mediator.publish('locker:remove');
+    },
+
+    onWonGame: function() {
+      alert('you win :)');
+    },
+
+    isWinner: function() {
+      return this.matches === (this.size / 2);
+    },
+
+    flagMatchs: function () {
+      this.elements.$el.find(this.getMatchSelector()).addClass('is-matched');
+    },
+
+    getMatchSelector: function () {
+      return '#' + this.clicks.last.id + ' ,#' + this.clicks.current.id;
     },
 
     isMatch: function () {
-      return (this.clicks.last.name === this.clicks.current.name);
+      return this.clicks.last.name === this.clicks.current.name;
     },
 
     revealCards: function () {
