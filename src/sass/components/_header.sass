@@ -1,0 +1,35 @@
+// ******************
+// ui-header
+// ***
+
+$module-name: 'ui-header'
+
+.#{$module-name}
+    position: fixed
+    left: 0
+    top: 0
+    font-size: 13px
+    display: block
+    width: 100%
+    color: #FFF
+    height: 25px
+    line-height: 25px
+    box-sizing: border-box
+    background-color: $color-transparent-white
+    z-index: $z-index-header
+    p
+      margin: 0
+      padding-left: 10px
+
+.#{$module-name}-content
+  float: left
+  width: 50%
+
+.#{$module-name}-link
+  display: inline-block
+  height: 100%
+  padding: 0 10px
+  box-sizing: border-box
+  &:hover
+    background-color: $color-transparent-white
+    transition: $transition-time

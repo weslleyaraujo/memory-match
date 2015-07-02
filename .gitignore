@@ -40,7 +40,7 @@ node_modules
 
 
 ### Bower ###
-bower_components
+src/js/vendor
 .bower-cache
 .bower-registry
 .bower-tmp

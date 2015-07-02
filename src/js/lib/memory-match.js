@@ -1,26 +1,40 @@
-;(function (root, helpers) {
+define([
+    'shared/mediator'
+
+], function(mediator) {
 
   function MemoryMatch (options) {
     this.options = options;
-    this.prepare();
-    this.start();
-    this.render();
+    // this.prepare();
+    this.bind();
+    // this.start();
+    // this.render();
+    return this;
   }
 
-  MemoryMatch.prototype.prepare = function () {
-    this.el = document.querySelector(this.options.el);
-    this.screen = document.querySelector(this.options.lock);
+  MemoryMatch.prototype.bind = function () {
+    mediator.subscribe('memory-match:create', $.proxy(this.onCreate, this));
+  };
+
+  MemoryMatch.prototype.onCreate = function (data) {
+    console.log(data);
+    debugger;
+  };
+
+  MemoryMatch.prototype.prepare = function (level) {
+    this.$el = $('[data-component="board"]');
+    this.$locker = $('[data-component="locker"]');
     this.clicks = {};
     this.matches = 0;
+    this.createChars();
+  };
 
-    // move
+  MemoryMatch.prototype.createChars = function () {
     this.characters = [];
     this.size = (this.options.x * this.options.y);
 
     this.cards = this.getArray(this.size / 2).map(function () {
-
       this.createUnique();
-
       return {
         times: 0,
         name: this.actualChar
@@ -41,7 +55,7 @@
 
   MemoryMatch.prototype.render = function () {
     this.table.forEach(function (element) {
-      this.el.appendChild(element);
+      this.$el.appendChild(element);
     }.bind(this));
   };
 
@@ -51,23 +65,23 @@
       field,
       actual;
 
-    this.getArray(this.options.y).map(function (value, index) {
-      this.clearCard();
-      actual = helpers.getRange(0, this.cards.length);
+      this.getArray(this.options.y).map(function (value, index) {
+        this.clearCard();
+        actual = helpers.getRange(0, this.cards.length);
 
-      this.cards[actual].times++;
+        this.cards[actual].times++;
 
-      field = new Field({
-        name: this.cards[actual].name,
-        id: this.cards[actual].name + '-' + helpers.getName(this.options.charSize)
-      });
+        field = new Field({
+          name: this.cards[actual].name,
+          id: this.cards[actual].name + '-' + helpers.getName(this.options.charSize)
+        });
 
-      field.registerClickCallback(this.afterActive.bind(this));
+        field.registerClickCallback(this.afterActive.bind(this));
 
-      el.appendChild(field.el);
-    }.bind(this));
+        el.appendChild(field.el);
+      }.bind(this));
 
-    return el;
+      return el;
 
     }.bind(this));
   };
@@ -83,11 +97,11 @@
   };
 
   MemoryMatch.prototype.lockScreen = function () {
-    helpers.addClass(this.screen, 'is-active');
+    this.$locker.addClass('is-active');
   };
 
   MemoryMatch.prototype.unlockScreen = function () {
-    helpers.removeClass(this.screen, 'is-active');
+    this.$locker.removeClass('is-active');
   };
 
   MemoryMatch.prototype.resultHandler = function () {
@@ -123,9 +137,7 @@
   };
 
   MemoryMatch.prototype.setMatched = function (fn) {
-    this.filterBySelector(this.getClicksSelector(), function (field) {
-      helpers.addClass(field, 'is-matched');
-    }.bind(this));
+    this.$el.find(this.getClicksSelector()).addClass('is-matched');
   };
 
   MemoryMatch.prototype.getClicksSelector = function () {
@@ -133,16 +145,10 @@
   };
 
   MemoryMatch.prototype.reveal = function (fn) {
-    this.filterBySelector('td.is-active', function (field) {
-      helpers.addClass(field, 'is-flipped');
-    }.bind(this));
+    this.$el.find('td.is-active').addClass('is-flipped');
 
     // change it to animation over
     setTimeout(fn, 1100);
-  };
-
-  MemoryMatch.prototype.filterBySelector = function (filter, fn) {
-    [].forEach.call(this.el.querySelectorAll(filter), fn);
   };
 
   MemoryMatch.prototype.isMatch = function () {
@@ -158,12 +164,7 @@
   };
 
   MemoryMatch.prototype.clearFlippeds = function () {
-    this.filterBySelector('td.is-flipped', function (field) {
-      if (!helpers.hasClass(field, 'is-matched')) {
-        field.className = "";
-      }
-    });
-
+    this.$el.find('td.is-flipped').removeClass('is-matched');
     this.clicks = {};
   };
 
@@ -179,6 +180,6 @@
     });
   };
 
-  root.MemoryMatch = MemoryMatch;
+  return MemoryMatch;
 
-} (window, window.helpers));
+});

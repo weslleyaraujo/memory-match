@@ -7,18 +7,32 @@ module.exports = function (grunt) {
     'grunt-contrib-jshint',
     'grunt-contrib-watch',
     'grunt-contrib-connect',
-    'grunt-contrib-concat',
-    'grunt-contrib-copy'
   ],
 
   config = {};
 
+  // js files
+  config.js = {};
+  config.js.files = [
+    'src/js/main.js',
+    'src/js/shared/*.js',
+
+    'src/js/field.js',
+    'src/js/memory-match.js',
+    'src/js/app.js'
+  ];
+
   // jshint
   config.jshint = {
+    options: {
+      debug: true
+    },
     all: {
       src: [
         'Gruntfile.js',
-        'src/js/*.js'
+        'src/js/**/*.js',
+        'src/js/*.js',
+        '!src/js/vendor/**/*.js',
       ]
     },
     specific: {
@@ -56,7 +70,7 @@ module.exports = function (grunt) {
       files: [
         'src/js/*.js',
       ],
-      tasks: ['concat:js']
+      tasks: [''] // some task
     }
   };
 
@@ -86,35 +100,6 @@ module.exports = function (grunt) {
     }
   };
 
-  // concat
-  config.concat = {
-    js: {
-      src: [
-        'src/js/helpers.js',
-        'src/js/field.js',
-        'src/js/memory-match.js',
-        'src/js/app.js'
-      ],
-
-      dest: 'dist/js/application.js'
-    }
-  };
-
-  // copy
-  config.copy = {
-    fonts: {
-      files: [
-        {
-          cwd: 'src',
-          expand: true,
-          src: ['fonts/**/*.{eot,svg,ttf,woff,woff2}'],
-          dest: 'dist/'
-        },
-      ]
-    }
-  };
-
-
   // config
   grunt.initConfig(config);
 
@@ -126,8 +111,6 @@ module.exports = function (grunt) {
     'sass',
     'postcss',
     'jshint:all',
-    'concat:js',
-    'copy',
     'connect',
     'watch'
   ]);
