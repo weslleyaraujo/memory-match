@@ -1,10 +1,10 @@
 define([
   'jquery',
-  'shared/animation-end',
+  'shared/config.animation-end',
+
 ], function ($, animationEnd) {
 
   return {
-
     config: {
       visibleClass: 'is-visible',
       previousClass: 'ui-page--move-to-left',
