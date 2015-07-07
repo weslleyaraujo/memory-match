@@ -7,6 +7,7 @@ module.exports = function (grunt) {
     'grunt-contrib-jshint',
     'grunt-contrib-watch',
     'grunt-contrib-connect',
+    'grunt-contrib-copy',
   ],
 
   config = {};
@@ -100,6 +101,16 @@ module.exports = function (grunt) {
     }
   };
 
+  // copy
+  config.copy = {
+    all: {
+      expand: true,
+      cwd: 'src/fonts/',
+      src: '**',
+      dest: 'dist/fonts',
+    }
+  };
+
   // config
   grunt.initConfig(config);
 
@@ -111,6 +122,7 @@ module.exports = function (grunt) {
     'sass',
     'postcss',
     'jshint:all',
+    'copy',
     'connect',
     'watch'
   ]);
