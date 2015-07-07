@@ -6,7 +6,7 @@ define([
   'shared/get-random-char',
   'shared/get-range',
   'shared/create-element',
-  'shared/animation-end',
+  'config/animation-end',
 
 ], function(Card, pages, mediator, createArray, getRandomChar, getRange, createElement, animationEnd) {
 

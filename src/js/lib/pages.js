@@ -1,6 +1,6 @@
 define([
   'jquery',
-  'shared/animation-end',
+  'config/animation-end',
 ], function ($, animationEnd) {
 
   return $.extend({}, {

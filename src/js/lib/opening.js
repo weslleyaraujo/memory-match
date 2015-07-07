@@ -1,7 +1,7 @@
 define([
     'lib/pages',
 
-    'shared/levels',
+    'config/levels',
     'shared/mediator'
 
 ], function(pages, levels, mediator) {
