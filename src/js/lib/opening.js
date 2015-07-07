@@ -1,12 +1,15 @@
 define([
     'lib/pages',
 
-    'shared/levels',
+    'config/levels',
     'shared/mediator'
 
 ], function(pages, levels, mediator) {
 
-  return $.extend({}, pages, {
+  return $.extend(true, {}, pages, {
+    config: {
+      el: '[data-component="initial-form"]'
+    },
   
     init: function () {
       this.prepare();
@@ -15,15 +18,15 @@ define([
 
     prepare: function () {
       this.elements = {};
-      this.elements.$form = $('[data-component="initial-form"]');
+      this.elements.$el = $(this.config.el);
     },
 
     bind: function () {
-      this.elements.$form.on('submit', $.proxy(this.onSubmit, this));
+      this.elements.$el.on('submit', $.proxy(this.onSubmit, this));
     },
 
     getLevel: function () {
-      return this.elements.$form.find('[name="level"]').val();
+      return this.elements.$el.find('[name="level"]').val();
     },
 
     onSubmit: function (event) {

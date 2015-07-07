@@ -5,24 +5,24 @@ define([
 
 ], function(createElement, getRandomChar, mediator) {
 
-  function Field(options) {
+  function Card(options) {
     this.options = options;
     this.prepare();
     this.bind();
   }
 
-  Field.prototype.prepare = function () {
+  Card.prototype.prepare = function () {
     this.name = this.options.name;
     this.id = this.options.name + '-' + getRandomChar(10);
 
     this.elementsHandler();
   };
 
-  Field.prototype.bind = function () {
+  Card.prototype.bind = function () {
     this.elements.$el.on('click', $.proxy(this.onClick, this));
   };
 
-  Field.prototype.onClick = function (event) {
+  Card.prototype.onClick = function (event) {
     var $target = $(event.currentTarget);
 
     if ($target.hasClass('is-active')) {
@@ -37,14 +37,14 @@ define([
     event.preventDefault();
   };
 
-  Field.prototype.afterClick = function () {
-    mediator.publish('field:click', {
+  Card.prototype.afterClick = function () {
+    mediator.publish('card:click', {
       id: this.id,
       name: this.name
     });
   };
 
-  Field.prototype.elementsHandler = function () {
+  Card.prototype.elementsHandler = function () {
     this.elements = {};
     this.elements.$el = createElement('td', {
       id: this.id
@@ -64,6 +64,6 @@ define([
   };
 
 
-  return Field;
+  return Card;
 
 });

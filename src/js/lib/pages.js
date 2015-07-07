@@ -1,9 +1,9 @@
 define([
   'jquery',
-  'shared/animation-end',
+  'config/animation-end',
 ], function ($, animationEnd) {
 
-  return {
+  return $.extend({}, {
 
     config: {
       visibleClass: 'is-visible',
@@ -45,6 +45,6 @@ define([
 
       return this.deferred.promise();
     }
-  };
+  });
 
 });
