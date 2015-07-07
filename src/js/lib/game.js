@@ -1,5 +1,5 @@
 define([
-  'lib/field',
+  'lib/card',
   'lib/pages',
   'shared/mediator',
   'shared/create-array',
@@ -8,7 +8,7 @@ define([
   'shared/create-element',
   'shared/animation-end',
 
-], function(Field, pages, mediator, createArray, getRandomChar, getRange, createElement, animationEnd) {
+], function(Card, pages, mediator, createArray, getRandomChar, getRange, createElement, animationEnd) {
 
   return $.extend({}, pages, {
     config: {
@@ -31,10 +31,10 @@ define([
 
     bind: function () {
       mediator.subscribe('game:start', this.onGameStart, this);
-      mediator.subscribe('field:click', this.onFieldClick, this);
+      mediator.subscribe('card:click', this.onCardClick, this);
     },
 
-    onFieldClick: function (data) {
+    onCardClick: function (data) {
       if(this.isLastClick()) {
         this.recordClick('current', data);
         this.onBothClicks();
@@ -173,7 +173,7 @@ define([
         this.clearCardList();
         this.actual = getRange(0, this.cards.length);
         this.increaseCardTimes();
-        $line.append(this.getFieldElement());
+        $line.append(this.getCardElement());
       }, this));
 
       return $line;
@@ -197,8 +197,8 @@ define([
       return this.cards[this.actual].name;
     },
 
-    getFieldElement: function () {
-      return new Field({
+    getCardElement: function () {
+      return new Card({
         name: this.getActualCardName()
       }).elements.$el;
     }
