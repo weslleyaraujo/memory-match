@@ -10,7 +10,7 @@ define([
 
 ], function(Card, pages, mediator, createArray, getRandomChar, getRange, createElement, animationEnd) {
 
-  return $.extend({}, pages, {
+  return $.extend(true, {}, pages, {
     config: {
       el: '[data-component="board"]',
       flipAnimationTime: 1000,
