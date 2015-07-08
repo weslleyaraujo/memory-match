@@ -34,7 +34,20 @@ define([
       mediator.subscribe('card:click', this.onCardClick, this);
     },
 
+    isEqualClick: function (data) {
+      try {
+        return this.clicks.last.id === data.id;
+      } catch(e) {
+        return false;
+      }
+    },
+
     onCardClick: function (data) {
+      if (this.isEqualClick(data)) {
+        this.clearClicks();
+        return;
+      }
+
       if(this.isLastClick()) {
         this.recordClick('current', data);
         this.onBothClicks();

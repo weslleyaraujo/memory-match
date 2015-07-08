@@ -27,11 +27,11 @@ define([
 
     if ($target.hasClass('is-active')) {
       $target.removeClass('is-active');
+      this.afterClick();
       return;
     }
 
     $target.addClass('is-active');
-
     this.afterClick();
 
     event.preventDefault();
