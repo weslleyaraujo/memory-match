@@ -12,7 +12,12 @@ $module-name: 'ui-easter-egg'
   height: 100%
   left: 0
   top: 0
-  animation: blink 0.1s infinite
+  display: none
+
+  // state
+  &.is-visible
+    display: block
+    animation: blink .05s infinite
 
 .#{$module-name}-image
     position: fixed
