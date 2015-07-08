@@ -103,12 +103,18 @@ module.exports = function (grunt) {
 
   // copy
   config.copy = {
-    all: {
+    fonts: {
       expand: true,
       cwd: 'src/fonts/',
       src: '**',
       dest: 'dist/fonts',
-    }
+    },
+    images: {
+      expand: true,
+      cwd: 'src/images/',
+      src: '**',
+      dest: 'dist/images',
+    },
   };
 
   // config
