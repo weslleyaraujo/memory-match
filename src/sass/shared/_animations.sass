@@ -2,15 +2,18 @@
 // animations
 // ***
 
+// move to left
 @keyframes move-to-left
   from
   to
     transform: translateX(-100%)
 
+// move to right
 @keyframes move-from-right
   from
     transform: translateX(100%)
 
+// slide in fade
 @keyframes slide-in-fade
   0%
     transform: translate3d(0, 100%, 0)
@@ -20,12 +23,14 @@
     opacity: 1
     transform: translate3d(0, 0, 0)
 
+// blink
 @keyframes blink
   from
     opacity: 0
   to
     opacity: 1
 
+// in grow
 @keyframes in-grow
   from
     opacity: 0
@@ -33,3 +38,16 @@
   to
     opacity: 1
     transform: translateX(-50%) translateY(-50%) scale(1)
+
+// zoom out
+@keyframes zoom-out
+  0%
+    opacity: 1
+
+  50%
+    opacity: 0
+    transform: scale3d(.3, .3, .3)
+
+  100%
+    opacity: 0
+    transform: translateX(-100%)

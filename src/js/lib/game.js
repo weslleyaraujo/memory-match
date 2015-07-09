@@ -9,9 +9,8 @@ define([
   'shared/get-random-char',
   'shared/get-range',
   'shared/create-element',
-  'config/animation-end',
 
-], function(jquery, konami, Card, pages, easterEgg, mediator, createArray, getRandomChar, getRange, createElement, animationEnd) {
+], function(jquery, konami, Card, pages, easterEgg, mediator, createArray, getRandomChar, getRange, createElement) {
 
   return $.extend(true, {}, pages, {
     config: {
@@ -30,7 +29,8 @@ define([
       this.clicks = {};
       this.elements = {};
       this.elements.$el = $(this.config.el);
-      this.easterEgg = new Konami($.proxy(this.onEasterEgg, this));
+
+      new Konami($.proxy(this.onEasterEgg));
     },
 
     bind: function () {
@@ -47,7 +47,7 @@ define([
     },
 
     onEasterEgg: function () {
-      easterEgg.init();
+      mediator.publish('easteregg:show');
     },
 
     onCardClick: function (data) {

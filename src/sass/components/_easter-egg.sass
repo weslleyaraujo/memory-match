@@ -7,7 +7,7 @@ $module-name: 'ui-easter-egg'
 .#{$module-name}
   position: fixed
   z-index: $z-index-easter-egg
-  background-color: $color-light
+  background-color: $color-transparent-white
   width: 100%
   height: 100%
   left: 0
@@ -17,7 +17,10 @@ $module-name: 'ui-easter-egg'
   // state
   &.is-visible
     display: block
-    animation: blink .05s infinite
+    animation: blink .5s infinite
+
+  &.is-done
+    animation: zoom-out .5s both ease-in
 
 .#{$module-name}-image
     position: fixed
