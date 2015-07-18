@@ -16,11 +16,15 @@ define([
     config: {
       el: '[data-component="board"]',
       flipAnimationTime: 1000,
+      animationClass: 'ui-board--slide-in-fade'
     },
   
     init: function () {
       this.prepare();
       this.bind();
+
+      // not assigning to any variable here :(
+      new Konami($.proxy(this.onEasterEgg));
     },
 
     prepare: function () {
@@ -29,9 +33,6 @@ define([
       this.clicks = {};
       this.elements = {};
       this.elements.$el = $(this.config.el);
-
-      // not assigning to any variable here :(
-      new Konami($.proxy(this.onEasterEgg));
     },
 
     bind: function () {
@@ -50,7 +51,7 @@ define([
 
     onGameAbort: function () {
       this.changePage('initial').done($.proxy(function () {
-        this.elements.$el.empty();
+        this.abort();
       }, this));
     },
 
@@ -168,6 +169,14 @@ define([
       this.start();
     },
 
+    abort: function () {
+      this.elements.$el
+        .empty()
+        .removeClass(this.config.animationClass);
+
+      this.prepare();
+    },
+
     start: function (data) {
       this.size = (this.options.x * this.options.y);
       this.generateCharacters();
@@ -221,7 +230,7 @@ define([
     },
 
     render: function (size) {
-      this.elements.$el.html(this.board).addClass('ui-board--slide-in-fade');
+      this.elements.$el.html(this.board).addClass(this.config.animationClass);
     },
 
     increaseCardTimes: function () {

@@ -16,7 +16,7 @@ define([], function () {
       size: 4,
     },
     expert: {
-      size: 10,
+      size: 8,
     },
   };
 });
