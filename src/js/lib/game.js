@@ -30,11 +30,13 @@ define([
       this.elements = {};
       this.elements.$el = $(this.config.el);
 
+      // not assigning to any variable here :(
       new Konami($.proxy(this.onEasterEgg));
     },
 
     bind: function () {
       mediator.subscribe('game:start', this.onGameStart, this);
+      mediator.subscribe('game:abort', this.onGameAbort, this);
       mediator.subscribe('card:click', this.onCardClick, this);
     },
 
@@ -44,6 +46,12 @@ define([
       } catch(e) {
         return false;
       }
+    },
+
+    onGameAbort: function () {
+      this.changePage('initial').done($.proxy(function () {
+        this.elements.$el.empty();
+      }, this));
     },
 
     onEasterEgg: function () {
@@ -151,6 +159,12 @@ define([
 
     onGameStart: function (data) {
       this.options = data;
+
+      // publish into mediator multicontent
+      mediator.publish('multicontent:show', {
+        name: 'back-button'
+      });
+
       this.start();
     },
 

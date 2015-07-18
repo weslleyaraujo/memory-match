@@ -24,6 +24,8 @@ $module-name: 'ui-header'
 .#{$module-name}-content
   float: left
   width: 50%
+  height: 100%
+  position: relative
 
 .#{$module-name}-link
   display: inline-block
@@ -33,3 +35,7 @@ $module-name: 'ui-header'
   &:hover
     background-color: $color-transparent-white
     transition: $transition-time
+
+.#{$module-name}-link-icon
+  position: relative
+  top: 1px

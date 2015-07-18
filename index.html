@@ -16,11 +16,16 @@
     <div class="ui-locker" data-component="locker"></div>
 
     <header class="ui-header">
-      <div class="ui-header-content g-text-left">
-        <p>MEMORY MATCH</p>
+      <div class="ui-header-content g-text-left" data-component="multicontent">
+        <div data-multicontent-name="title" class="ui-multicontent">
+          <p>MEMORY MATCH</p>
+        </div>
+        <div data-multicontent-name="back-button" class="ui-multicontent is-hidden" >
+          <a data-component="back-button" target="_blank" href="#" class="ui-header-link"> <i class="ui-header-link-icon ui-icon-circle-left"></i> BACK </a>
+        </div>
       </div>
       <div class="ui-header-content g-text-right">
-        <a target="_blank" href="https://github.com/weslleyaraujo/memory-match/" class="ui-header-link"> <i class="ui-icon-github4"></i> FORK ME ON GITHUB </a>
+        <a target="_blank" href="https://github.com/weslleyaraujo/memory-match/" class="ui-header-link-icon ui-header-link"> <i class="ui-icon-github4"></i> FORK ME ON GITHUB </a>
       </div>
     </header>
 
