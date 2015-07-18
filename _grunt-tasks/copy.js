@@ -2,11 +2,18 @@ module.exports = function(grunt) {
   'use strict';
 
   grunt.config('copy', {
-    all: {
+    fonts: {
       expand: true,
       cwd: 'src/fonts/',
       src: '**',
       dest: 'dist/fonts',
+    },
+
+    images: {
+      expand: true,
+      cwd: 'src/images/',
+      src: '**',
+      dest: 'dist/images',
     }
   });
 

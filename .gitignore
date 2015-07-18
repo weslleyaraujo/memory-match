@@ -53,4 +53,5 @@ src/js/vendor
 dist/css/*.css
 dist/js/*.js
 dist/fonts/**/*
+dist/images/
 *.DS_Store
