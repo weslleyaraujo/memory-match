@@ -1,14 +1,16 @@
 define([
+  'jquery',
+  'konami',
   'lib/card',
   'lib/pages',
+  'lib/easter-egg',
   'shared/mediator',
   'shared/create-array',
   'shared/get-random-char',
   'shared/get-range',
   'shared/create-element',
-  'config/animation-end',
 
-], function(Card, pages, mediator, createArray, getRandomChar, getRange, createElement, animationEnd) {
+], function(jquery, konami, Card, pages, easterEgg, mediator, createArray, getRandomChar, getRange, createElement) {
 
   return $.extend(true, {}, pages, {
     config: {
@@ -27,6 +29,8 @@ define([
       this.clicks = {};
       this.elements = {};
       this.elements.$el = $(this.config.el);
+
+      new Konami($.proxy(this.onEasterEgg));
     },
 
     bind: function () {
@@ -40,6 +44,10 @@ define([
       } catch(e) {
         return false;
       }
+    },
+
+    onEasterEgg: function () {
+      mediator.publish('easteregg:show');
     },
 
     onCardClick: function (data) {

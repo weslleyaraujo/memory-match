@@ -1,0 +1,34 @@
+// ******************
+// ui-easter-egg
+// ***
+
+$module-name: 'ui-easter-egg'
+
+.#{$module-name}
+  position: fixed
+  z-index: $z-index-easter-egg
+  background-color: $color-transparent-white
+  width: 100%
+  height: 100%
+  left: 0
+  top: 0
+  display: none
+
+  // state
+  &.is-visible
+    display: block
+    animation: blink 0.1s infinite
+
+  &.is-done
+    animation: zoom-out .5s both ease-in
+
+.#{$module-name}-image
+    position: fixed
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+    margin: auto
+    animation: in-grow 1.5s both
+    svg
+      fill: $color-transparent-white
