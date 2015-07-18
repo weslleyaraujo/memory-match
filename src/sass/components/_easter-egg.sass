@@ -24,9 +24,11 @@ $module-name: 'ui-easter-egg'
 
 .#{$module-name}-image
     position: fixed
-    left: 50%
-    top: 50%
-    transform: translateX(-50%) translateY(-50%)
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+    margin: auto
     animation: in-grow 1.5s both
     svg
       fill: $color-transparent-white
