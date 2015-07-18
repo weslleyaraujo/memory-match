@@ -28,11 +28,20 @@ $source-location: '/src/fonts/icomoon';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.ui-icon-heart:before {
+	content: "\e9da";
+}
+.ui-icon-happy:before {
+	content: "\e9df";
+}
 .ui-icon-circle-down:before {
 	content: "\ea43";
 }
 .ui-icon-circle-left:before {
 	content: "\ea44";
+}
+.ui-icon-facebook:before {
+	content: "\ea8c";
 }
 .ui-icon-twitter:before {
 	content: "\ea91";
