@@ -16,20 +16,15 @@
     <div class="ui-locker" data-component="locker"></div>
 
     <header class="ui-header">
-      <div class="ui-header-content g-text-left" data-component="multicontent">
-        <div data-multicontent-name="title" class="ui-multicontent">
-          <p>MEMORY MATCH</p>
-        </div>
-        <div data-multicontent-name="back-button" class="ui-multicontent is-hidden" >
-          <a data-component="back-button" target="_blank" href="#" class="ui-header-link"> <i class="ui-header-link-icon ui-icon-circle-left"></i> BACK </a>
-        </div>
+      <div class="ui-header-content g-text-left g-pull-left" data-component="multicontent">
+        <a data-component="back-button" target="_blank" href="#" class="ui-header-link ui-back-button is-hidden"> <i class="ui-header-link-icon ui-icon-circle-left"></i> BACK </a>
       </div>
-      <div class="ui-header-content g-text-right">
+      <div class="ui-header-content g-text-right g-pull-right">
         <a target="_blank" href="https://github.com/weslleyaraujo/memory-match/" class="ui-header-link-icon ui-header-link"> <i class="ui-icon-github4"></i> FORK ME ON GITHUB </a>
       </div>
     </header>
 
-    <div class="ui-page ui-page--primary" data-page-name="initial"> <!-- visible -->
+    <div class="ui-page ui-page--primary is-visible" data-page-name="initial">
       <div class="ui-page-content g-text-center">
         <h1>Memory Match</h1>
         <div class="l-max-w">
@@ -60,13 +55,13 @@
       </div>
     </div>
 
-    <div class="ui-page ui-page--tertiary is-visible">
+    <div class="ui-page ui-page--tertiary" data-page-name="win">
       <div class="ui-page-content g-text-center">
         <h2>YOU WIN!  </h2>
         <p>Share this game with your friends!</p>
         <ul class="g-clear-list g-text-center ui-social-list">
           <li class="g-inline-list">
-            <a href="" target="_blank" class="ui-social-list-link"><i class="ui-icon ui-icon-twitter"></i></a>
+          <a href="http://www.twitter.com/share?text=Just won at Memory Match game! by @_weslleyaraujo - &url=http://weslleyaraujo.github.io/memory-match" target="_blank" class="ui-social-list-link"><i class="ui-icon ui-icon-twitter"></i></a>
           </li>
 
           <li class="g-inline-list">
@@ -76,9 +71,10 @@
       </div>
     </div>
 
-    <!-- <footer> -->
-    <!--   <a href="http://twitter.com/_weslleyaraujo" target="_blank">@_weslleyaraujo</a> -->
-    <!-- </footer> -->
+    <footer class="ui-footer">
+      created with <span class="ui-footer-icon"><i class="ui-icon ui-icon-heart"></i></span> by
+      <a href="http://twitter.com/_weslleyaraujo" target="_blank">@_weslleyaraujo</a>
+    </footer>
 
     <script data-main="src/js/main.js" src="src/js/vendor/requirejs/require.js"></script>
 
