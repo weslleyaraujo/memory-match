@@ -1,7 +1,8 @@
 define([
   'jquery',
   'config/animation-end',
-], function ($, animationEnd) {
+  'shared/once',
+], function ($, animationEnd, once) {
 
   return $.extend({}, {
 
@@ -24,10 +25,12 @@ define([
     },
 
     showNextPage: function (callback) {
+      callback = once(callback, this);
+
       this.$nextPage
         .addClass(this.config.nextClass)
         .addClass(this.config.visibleClass)
-        .one(animationEnd, $.proxy(callback, this));
+        .one(animationEnd, callback);
     },
 
     changePage: function(name) {
@@ -38,12 +41,19 @@ define([
       this.hideCurrentPage();
 
       this.showNextPage(function () {
-        this.$nextPage.removeClass(this.config.previousClass);
+        this.removePageClasses(this.$nextPage);
+        this.removePageClasses(this.$currentPage);
         this.$currentPage.removeClass(this.config.visibleClass);
         this.deferred.resolve();
       });
 
       return this.deferred.promise();
+    },
+
+    removePageClasses: function($target) {
+        $target
+          .removeClass(this.config.previousClass)
+          .removeClass(this.config.nextClass);
     }
   });
 

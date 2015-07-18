@@ -29,13 +29,14 @@ $source-location: '/src/fonts/icomoon';
   -moz-osx-font-smoothing: grayscale;
 }
 .ui-icon-circle-down:before {
-  content: "\ea43";
+	content: "\ea43";
 }
-
+.ui-icon-circle-left:before {
+	content: "\ea44";
+}
 .ui-icon-twitter:before {
-  content: "\ea91";
+	content: "\ea91";
 }
 .ui-icon-github4:before {
-  content: "\eab4";
+	content: "\eab4";
 }
-

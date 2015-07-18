@@ -1,0 +1,14 @@
+// ******************
+// ui-multicontent
+// ***
+
+$module-name: 'ui-multicontent'
+
+.#{$module-name}
+  position: absolute
+  transform: translateX(0);
+  opacity: 1
+  transition: 0.3s
+  &.is-hidden
+    transform: translateX(-100%);
+    opacity: 0;

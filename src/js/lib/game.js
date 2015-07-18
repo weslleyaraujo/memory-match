@@ -16,11 +16,15 @@ define([
     config: {
       el: '[data-component="board"]',
       flipAnimationTime: 1000,
+      animationClass: 'ui-board--slide-in-fade'
     },
   
     init: function () {
       this.prepare();
       this.bind();
+
+      // not assigning to any variable here :(
+      new Konami($.proxy(this.onEasterEgg));
     },
 
     prepare: function () {
@@ -29,12 +33,11 @@ define([
       this.clicks = {};
       this.elements = {};
       this.elements.$el = $(this.config.el);
-
-      new Konami($.proxy(this.onEasterEgg));
     },
 
     bind: function () {
       mediator.subscribe('game:start', this.onGameStart, this);
+      mediator.subscribe('game:abort', this.onGameAbort, this);
       mediator.subscribe('card:click', this.onCardClick, this);
     },
 
@@ -44,6 +47,12 @@ define([
       } catch(e) {
         return false;
       }
+    },
+
+    onGameAbort: function () {
+      this.changePage('initial').done($.proxy(function () {
+        this.abort();
+      }, this));
     },
 
     onEasterEgg: function () {
@@ -151,7 +160,21 @@ define([
 
     onGameStart: function (data) {
       this.options = data;
+
+      // publish into mediator multicontent
+      mediator.publish('multicontent:show', {
+        name: 'back-button'
+      });
+
       this.start();
+    },
+
+    abort: function () {
+      this.elements.$el
+        .empty()
+        .removeClass(this.config.animationClass);
+
+      this.prepare();
     },
 
     start: function (data) {
@@ -207,7 +230,7 @@ define([
     },
 
     render: function (size) {
-      this.elements.$el.html(this.board).addClass('ui-board--slide-in-fade');
+      this.elements.$el.html(this.board).addClass(this.config.animationClass);
     },
 
     increaseCardTimes: function () {
