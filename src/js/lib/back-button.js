@@ -5,7 +5,8 @@ define([
 
   return {
     config: {
-      el: '[data-component="back-button"]'
+      el: '[data-component="back-button"]',
+      hiddenClass: 'is-hidden'
     },
 
     init: function () {
@@ -20,14 +21,24 @@ define([
 
     bind: function () {
       this.elements.$el.on('click', $.proxy(this.onClick, this));
+      mediator.subscribe('game:start', $.proxy(this.onGameStart, this));
+    },
+
+    onGameStart: function () {
+      this.show();
+    },
+
+    hide: function () {
+      this.elements.$el.addClass(this.config.hiddenClass);
+    },
+
+    show: function () {
+      this.elements.$el.removeClass(this.config.hiddenClass);
     },
 
     onClick: function (event) {
       mediator.publish('game:abort');
-      mediator.publish('multicontent:show', {
-        name: 'title'
-      });
-
+      this.hide();
       event.preventDefault();
     },
   };

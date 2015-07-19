@@ -13,12 +13,14 @@ $module-height: 45px
   color: $color-reading
   background-color: $color-light
   appearance: none
-  box-shadow: 0 3px 0 rgba(0,0,0,0.1)
+  box-shadow: 0 3px 0 $color-transparent-dark-soft
   height: $module-height
   font-family: $font-family-default
   width: 100%
   margin: 10px 0
   cursor: pointer
+  outline: 0
+  transition: background-color $transition-time
 
 .#{$module-name}-wrap
   position: relative
@@ -36,3 +38,4 @@ $module-height: 45px
     z-index: 1
     top: 15px
     right: 10px
+    transition: color $transition-time

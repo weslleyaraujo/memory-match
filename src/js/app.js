@@ -3,13 +3,11 @@ define([
     'lib/game',
     'lib/locker',
     'lib/easter-egg',
-    'lib/multicontent',
     'lib/back-button',
-], function (opening, game, locker, easterEgg, multicontent, backButton) {
+], function (opening, game, locker, easterEgg, backButton) {
   locker.init();
   opening.init();
   game.init();
   easterEgg.init();
-  multicontent.init();
   backButton.init();
 });

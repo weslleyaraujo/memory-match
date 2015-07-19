@@ -125,7 +125,7 @@ define([
       this.removeLocker();
 
       if(this.isWinner()) {
-        this.onWonGame();
+        this.onWinGame();
       }
     },
 
@@ -133,8 +133,10 @@ define([
       mediator.publish('locker:remove');
     },
 
-    onWonGame: function() {
-      alert('you win :)');
+    onWinGame: function() {
+      this.changePage('win', function () {
+        mediator.publish('game:win');
+      });
     },
 
     isWinner: function() {
@@ -160,12 +162,6 @@ define([
 
     onGameStart: function (data) {
       this.options = data;
-
-      // publish into mediator multicontent
-      mediator.publish('multicontent:show', {
-        name: 'back-button'
-      });
-
       this.start();
     },
 

@@ -3,17 +3,17 @@
 // ***
 
 $module-name: 'ui-header'
+$module-height: 45px
 
 .#{$module-name}
     position: fixed
     left: 0
     top: 0
-    font-size: 13px
+    font-size: 16px
     display: block
     width: 100%
-    color: #FFF
-    height: 25px
-    line-height: 25px
+    height: $module-height
+    line-height: $module-height
     box-sizing: border-box
     background-color: $color-transparent-white
     z-index: $z-index-header
@@ -22,8 +22,6 @@ $module-name: 'ui-header'
       padding-left: 10px
 
 .#{$module-name}-content
-  float: left
-  width: 50%
   height: 100%
   position: relative
 
@@ -32,9 +30,10 @@ $module-name: 'ui-header'
   height: 100%
   padding: 0 10px
   box-sizing: border-box
+  transition: $transition-time
   &:hover
+    color: $color-light
     background-color: $color-transparent-white
-    transition: $transition-time
 
 .#{$module-name}-link-icon
   position: relative
