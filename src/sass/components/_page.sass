@@ -25,6 +25,12 @@ $module-name: 'ui-page'
   &.#{$module-name}--move-to-left
     animation: move-to-left .6s ease both
 
+  &.#{$module-name}--move-to-right
+    animation: move-to-right .6s ease both
+
+  &.#{$module-name}--move-from-left
+    animation: move-from-left .6s ease both
+
   &.#{$module-name}--move-from-right
     animation: move-from-right .6s ease both
 
@@ -41,4 +47,4 @@ $module-name: 'ui-page'
   background-color: map-get($colors, 1)
 
 .#{$module-name}--tertiary
-  background-color: map-get($colors, 2)
+  background-color: map-get($colors, 3)

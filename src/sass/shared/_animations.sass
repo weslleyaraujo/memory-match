@@ -4,14 +4,27 @@
 
 // move to left
 @keyframes move-to-left
-  from
   to
     transform: translateX(-100%)
 
 // move to right
+@keyframes move-to-right
+  to
+    transform: translateX(100%)
+
+// move from left
+@keyframes move-from-left
+  from
+    transform: translateX(-100%)
+  to
+    transform: translateX(0)
+
+// move from right
 @keyframes move-from-right
   from
     transform: translateX(100%)
+  to
+    transform: translateX(0)
 
 // slide in fade
 @keyframes slide-in-fade

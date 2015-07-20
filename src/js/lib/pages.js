@@ -8,8 +8,11 @@ define([
 
     config: {
       visibleClass: 'is-visible',
-      previousClass: 'ui-page--move-to-left',
-      nextClass: 'ui-page--move-from-right'
+      toLeftClass: 'ui-page--move-to-left',
+      toRightClass: 'ui-page--move-to-right',
+
+      fromLeftClass: 'ui-page--move-from-left',
+      fromRightClass: 'ui-page--move-from-right'
     },
 
     getCurrentPage: function (data, filter) {
@@ -21,16 +24,23 @@ define([
     },
 
     hideCurrentPage: function (name) {
-      this.$currentPage.addClass(this.config.previousClass);
+      var animation = this.isPrevious() ? this.config.toLeftClass : this.config.toRightClass;
+      this.$currentPage.addClass(animation);
     },
 
     showNextPage: function (callback) {
+      var animation = this.isPrevious() ? this.config.fromRightClass : this.config.fromLeftClass;
       callback = once(callback, this);
 
+      console.log(animation);
       this.$nextPage
-        .addClass(this.config.nextClass)
+        .addClass(animation)
         .addClass(this.config.visibleClass)
         .one(animationEnd, callback);
+    },
+
+    isPrevious: function() {
+      return this.$currentPage.data('page-index') < this.$nextPage.data('page-index');
     },
 
     changePage: function(name) {
@@ -52,8 +62,10 @@ define([
 
     removePageClasses: function($target) {
         $target
-          .removeClass(this.config.previousClass)
-          .removeClass(this.config.nextClass);
+          .removeClass(this.config.toLeftClass)
+          .removeClass(this.config.toRightClass)
+          .removeClass(this.config.fromLeftClass)
+          .removeClass(this.config.fromRightClass);
     }
   });
 
