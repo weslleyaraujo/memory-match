@@ -1,4 +1,4 @@
-define([], function () {
+define(function () {
   return function(fn, context) { 
     var result;
     return function() { 
@@ -8,5 +8,5 @@ define([], function () {
       }
       return result;
     };
-  }
+  };
 });
