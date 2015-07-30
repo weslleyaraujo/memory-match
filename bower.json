@@ -17,6 +17,7 @@
   "devDependencies": {
     "konami-js": "*",
     "requirejs": "~2.1.18",
-    "jquery": "~2.1.4"
+    "jquery": "~2.1.4",
+    "fastclick": "~1.0.6"
   }
 }
