@@ -4,6 +4,7 @@
 
 $module-name: 'ui-header'
 $module-height: 45px
+$module-height-mobile: 35px
 
 .#{$module-name}
   position: fixed
@@ -22,8 +23,9 @@ $module-height: 45px
     margin: 0
     padding-left: 10px
   +media('mobile')
-    // FIXME: just testing mixing above
-    font-size: 10px
+    font-size: $font-size-mobile-default
+    height: $module-height-mobile
+    line-height: $module-height-mobile
 
 .#{$module-name}-content
   height: 100%

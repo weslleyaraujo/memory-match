@@ -6,6 +6,8 @@
 
 $module-name: 'ui-board'
 $module-item-height: 50px
+$module-font-size-icon: 40px
+$module-font-size-mobile-icon: 45px
 
 .#{$module-name}
   margin: 0 auto
@@ -62,8 +64,10 @@ $module-item-height: 50px
     padding: 0
     backface-visibility: hidden
     font-family: $font-family-icon
-    font-size: $font-size-icon
+    font-size: $module-font-size-icon
     @extend %default-transition
+    +media('mobile')
+      font-size: $module-font-size-mobile-icon
 
     // states
     &.is-back 

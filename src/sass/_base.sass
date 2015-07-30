@@ -10,6 +10,8 @@ body, html
   background-color: map-get($colors, 3)
   color: $color-transparent-dark
   font-size: $font-size-default
+  +media('mobile')
+    font-size: $font-size-mobile-default
 
 a
   text-decoration: none
