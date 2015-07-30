@@ -6,14 +6,16 @@
 
 $module-name: 'ui-board'
 $module-item-height: 50px
-$module-font-size-icon: 40px
-$module-font-size-mobile-icon: 45px
+$module-font-size-icon: 50px
+$module-font-size-mobile-icon: 43px
+$module-max-width: 600px
 
 .#{$module-name}
   margin: 0 auto
   width: 100%
-  max-width: 480px
+  max-width: $module-max-width
   perspective: 100%
+  height: 80%
   opacity: 0
 
   // modifier
@@ -79,4 +81,5 @@ $module-font-size-mobile-icon: 45px
   .#{$module-name}
     figure
       font-family: $font-family-special
+      font-weight: bold
       font-size: 40px

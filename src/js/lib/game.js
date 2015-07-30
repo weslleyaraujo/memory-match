@@ -33,12 +33,25 @@ define([
       this.clicks = {};
       this.elements = {};
       this.elements.$el = $(this.config.el);
+      this.elements.$window  = $(window);
     },
 
     bind: function () {
       mediator.subscribe('game:start', this.onGameStart, this);
       mediator.subscribe('game:abort', this.onGameAbort, this);
       mediator.subscribe('card:click', this.onCardClick, this);
+      this.elements.$window.on('resize', $.proxy(this.onWindowResize, this));
+    },
+
+    onWindowResize: function() {
+      this.setLineHeight();
+    },
+
+    setLineHeight: function() {
+      this.elements.$el.find('figure').each(function() {
+        var $target = $(this);
+        $target.css('lineHeight', $target.height() + 'px');
+      });
     },
 
     isEqualClick: function (data) {
@@ -179,6 +192,7 @@ define([
       this.generateBoard();
 
       this.render();
+      this.setLineHeight();
     },
 
     generateBoard: function () {
