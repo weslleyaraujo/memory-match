@@ -1,0 +1,9 @@
+// ******************
+// mixins file
+// ***
+
+// media
+=media($type)
+  @if $type == "mobile"
+      @media screen and (max-width: 600px)
+            @content

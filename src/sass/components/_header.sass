@@ -6,21 +6,24 @@ $module-name: 'ui-header'
 $module-height: 45px
 
 .#{$module-name}
-    position: fixed
-    left: 0
-    top: 0
-    font-size: 16px
-    display: block
-    width: 100%
-    height: $module-height
-    line-height: $module-height
-    box-sizing: border-box
-    background-color: $color-transparent-white
-    overflow: hidden
-    z-index: $z-index-header
-    p
-      margin: 0
-      padding-left: 10px
+  position: fixed
+  left: 0
+  top: 0
+  font-size: 16px
+  display: block
+  width: 100%
+  height: $module-height
+  line-height: $module-height
+  box-sizing: border-box
+  background-color: $color-transparent-white
+  overflow: hidden
+  z-index: $z-index-header
+  p
+    margin: 0
+    padding-left: 10px
+  +media('mobile')
+    // FIXME: just testing mixing above
+    font-size: 10px
 
 .#{$module-name}-content
   height: 100%
