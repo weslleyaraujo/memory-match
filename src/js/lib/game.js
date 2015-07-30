@@ -50,7 +50,21 @@ define([
     setLineHeight: function() {
       this.elements.$el.find('figure').each(function() {
         var $target = $(this);
+        var height = $target.height();
+        var width = $target.width();
+        var fontSize;
+
         $target.css('lineHeight', $target.height() + 'px');
+
+        if(height > width) {
+          fontSize = height - (height * 0.15);
+          $target.css('fontSize', fontSize + 'px');
+          return;
+        }
+
+        console.log('width');
+        fontSize = width - (width * 0.5);
+        $target.css('fontSize', fontSize + 'px');
       });
     },
 
