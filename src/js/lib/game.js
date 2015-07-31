@@ -47,6 +47,9 @@ define([
       this.setLineHeight();
     },
 
+    /*
+     * FIXME: Think in a smart way to do that
+     */
     setLineHeight: function() {
       this.elements.$el.find('figure').each(function() {
         var $target = $(this);
