@@ -4,23 +4,28 @@
 
 $module-name: 'ui-header'
 $module-height: 45px
+$module-height-mobile: 35px
 
 .#{$module-name}
-    position: fixed
-    left: 0
-    top: 0
-    font-size: 16px
-    display: block
-    width: 100%
-    height: $module-height
-    line-height: $module-height
-    box-sizing: border-box
-    background-color: $color-transparent-white
-    overflow: hidden
-    z-index: $z-index-header
-    p
-      margin: 0
-      padding-left: 10px
+  position: fixed
+  left: 0
+  top: 0
+  font-size: 16px
+  display: block
+  width: 100%
+  height: $module-height
+  line-height: $module-height
+  box-sizing: border-box
+  background-color: $color-transparent-white
+  overflow: hidden
+  z-index: $z-index-header
+  p
+    margin: 0
+    padding-left: 10px
+  +media('mobile')
+    font-size: $font-size-mobile-default
+    height: $module-height-mobile
+    line-height: $module-height-mobile
 
 .#{$module-name}-content
   height: 100%

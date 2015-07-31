@@ -10,10 +10,12 @@ $module-name: 'ui-footer'
   z-index: 2
   text-align: right
   line-height: 10px
-  font-size: 14px
+  font-size: $font-size-mini
   padding: 15px 10px
   box-sizing: border-box
   width: 100%
+  +media('mobile')
+    font-size: $font-size-mobile-mini
 
 .#{$module-name}-icon
   font-size: 10px

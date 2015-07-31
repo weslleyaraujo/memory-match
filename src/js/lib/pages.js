@@ -32,7 +32,6 @@ define([
       var animation = this.isPrevious() ? this.config.fromRightClass : this.config.fromLeftClass;
       callback = once(callback, this);
 
-      console.log(animation);
       this.$nextPage
         .addClass(animation)
         .addClass(this.config.visibleClass)
