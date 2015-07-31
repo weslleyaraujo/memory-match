@@ -57,13 +57,12 @@ define([
         $target.css('lineHeight', $target.height() + 'px');
 
         if(height > width) {
-          fontSize = height - (height * 0.15);
+          fontSize = height - (height * 0.30);
           $target.css('fontSize', fontSize + 'px');
           return;
         }
 
-        console.log('width');
-        fontSize = width - (width * 0.5);
+        fontSize = width - (width * 0.50);
         $target.css('fontSize', fontSize + 'px');
       });
     },
