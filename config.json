@@ -1,6 +1,10 @@
 {
   "js" : {
-    "main": "src/js/main.js",
-    "vendor": "src/js/vendor/requirejs/require.js"
+    "main": "/src/js/main.js",
+    "vendor": "/src/js/vendor/requirejs/require.js"
+  },
+
+  "css" : {
+    "main": "dist/css/main.css"
   }
 }

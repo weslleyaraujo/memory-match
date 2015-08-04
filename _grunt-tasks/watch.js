@@ -13,8 +13,9 @@ module.exports = function(grunt) {
     ejs: {
       files: [
         'src/*.html',
+        '*.json',
       ],
-      tasks: ['render']
+      tasks: ['render', 'copy:html']
     }
   });
 
