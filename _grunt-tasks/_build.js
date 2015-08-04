@@ -8,6 +8,7 @@ module.exports = function(grunt) {
     'copy',
     'requirejs',
     'uglify',
+    'htmlmin',
   ]);
 
 };
