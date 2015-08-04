@@ -10,6 +10,7 @@ module.exports = function(grunt) {
     'uglify',
     'render',
     'htmlmin',
+    'replace',
   ]);
 
 };

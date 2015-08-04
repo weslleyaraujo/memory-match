@@ -36,6 +36,7 @@
     "grunt-ejs-render": "^0.2.7",
     "grunt-gh-pages": "^0.10.0",
     "grunt-postcss": "^0.5.1",
+    "grunt-replace": "^0.9.2",
     "grunt-sass": "^1.0.0"
   }
 }

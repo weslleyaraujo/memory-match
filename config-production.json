@@ -1,10 +1,19 @@
 {
+  "hostname": "http://weslleyaraujo.github.io/memory-match/",
   "js" : {
-    "main": "js/main.min.js",
-    "vendor": "js/require.min.js"
+    "main": "/js/main.min.js",
+    "vendor": "/js/require.min.js"
   },
 
   "css" : {
-    "main": "css/main.css"
+    "main": "/css/main.css"
+  },
+
+  "fonts": {
+    "src": "http://weslleyaraujo.github.io/memory-match/fonts/"
+  },
+
+  "images" : {
+    "src": "/images/"
   }
 }
