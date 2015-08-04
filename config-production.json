@@ -1,0 +1,10 @@
+{
+  "js" : {
+    "main": "js/main.min.js",
+    "vendor": "js/require.min.js"
+  },
+
+  "css" : {
+    "main": "css/main.css"
+  }
+}

@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         baseUrl: 'src/js/',
         mainConfigFile: 'src/js/main.js',
         name: 'app',
-        out: 'dist/js/application.min.js',
+        out: 'dist/js/main.min.js',
         include: ['main'],
         preserveLicenseComments: false
       }
