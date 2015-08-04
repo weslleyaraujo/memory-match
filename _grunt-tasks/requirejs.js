@@ -8,6 +8,7 @@ module.exports = function(grunt) {
         mainConfigFile: 'src/js/main.js',
         name: 'app',
         out: 'dist/js/application.js',
+        include: ['main'],
         preserveLicenseComments: false
       }
     }
