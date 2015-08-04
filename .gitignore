@@ -55,4 +55,5 @@ dist/js/*.js
 dist/fonts/**/*
 dist/images/
 index.html
+!src/index.html
 *.DS_Store
