@@ -14,6 +14,13 @@ module.exports = function(grunt) {
       cwd: 'src/images/',
       src: '**',
       dest: 'dist/images',
+    },
+
+    html: {
+      expand: true,
+      cwd: 'src',
+      src: '*.html',
+      dest: '.',
     }
   });
 

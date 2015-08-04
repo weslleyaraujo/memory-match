@@ -5,6 +5,7 @@ module.exports = function(grunt) {
     'jshint:all',
     'sass',
     'postcss',
+    'render',
     'copy',
     'connect',
     'watch'

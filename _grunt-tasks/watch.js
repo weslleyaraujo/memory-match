@@ -10,11 +10,11 @@ module.exports = function(grunt) {
       ],
       tasks: ['sass', 'postcss']
     },
-    js: {
+    ejs: {
       files: [
-        'src/js/*.js',
+        'src/*.html',
       ],
-      tasks: [''] // some task
+      tasks: ['render']
     }
   });
 

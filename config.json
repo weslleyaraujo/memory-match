@@ -1,0 +1,6 @@
+{
+  "js" : {
+    "main": "src/js/main.js",
+    "vendor": "src/js/vendor/requirejs/require.js"
+  }
+}
