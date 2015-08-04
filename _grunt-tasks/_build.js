@@ -7,6 +7,7 @@ module.exports = function(grunt) {
     'postcss',
     'copy',
     'requirejs',
+    'uglify',
   ]);
 
 };
