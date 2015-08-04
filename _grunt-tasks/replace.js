@@ -4,8 +4,7 @@
 module.exports = function(grunt) {
   'use strict';
 
-  var CONFIG_NAME = 'config' + (grunt.option('config') ? '-' + grunt.option('config') : '-development') + '.json';
-  var CONFIG_FILE = grunt.file.readJSON(CONFIG_NAME);
+  var CONFIG_FILE = grunt.file.readJSON('config-production.json');
 
   grunt.config('replace', {
     dist: {
