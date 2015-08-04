@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         'src/*.html',
         '*.json',
       ],
-      tasks: ['render', 'copy:html']
+      tasks: ['render']
     }
   });
 
