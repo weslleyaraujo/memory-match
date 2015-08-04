@@ -1,0 +1,16 @@
+// ******************
+// penis font
+// ***
+
+$source-location: '/dist/fonts/penis';
+
+@font-face {
+	font-family: "penis";
+	src: url("#{$source-location}/penis.eot");
+	src: url("#{$source-location}/penis.eot#iefix") format("embedded-opentype"),
+	url("#{$source-location}/penis.woff") format("woff"),
+	url("#{$source-location}/penis.ttf") format("truetype"),
+	url("#{$source-location}/penis.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}

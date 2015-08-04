@@ -1,0 +1,319 @@
+@font-face {
+	font-family: "Flaticon";
+	src: url("penis.eot");
+	src: url("penis.eot#iefix") format("embedded-opentype"),
+	url("penis.woff") format("woff"),
+	url("penis.ttf") format("truetype"),
+	url("penis.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+	font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}.flaticon-.notdef:before {
+	content: "\a";
+}
+.flaticon-exclam:before {
+	content: "\21";
+}
+.flaticon-quotedbl:before {
+	content: "\22";
+}
+.flaticon-numbersign:before {
+	content: "\23";
+}
+.flaticon-dollar:before {
+	content: "\24";
+}
+.flaticon-percent:before {
+	content: "\25";
+}
+.flaticon-ampersand:before {
+	content: "\26";
+}
+.flaticon-quotesingle:before {
+	content: "\27";
+}
+.flaticon-parenleft:before {
+	content: "\28";
+}
+.flaticon-parenright:before {
+	content: "\29";
+}
+.flaticon-asterisk:before {
+	content: "\2a";
+}
+.flaticon-plus:before {
+	content: "\2b";
+}
+.flaticon-comma:before {
+	content: "\2c";
+}
+.flaticon-hyphen:before {
+	content: "\2d";
+}
+.flaticon-period:before {
+	content: "\2e";
+}
+.flaticon-slash:before {
+	content: "\2f";
+}
+.flaticon-zero:before {
+	content: "\30";
+}
+.flaticon-one:before {
+	content: "\31";
+}
+.flaticon-two:before {
+	content: "\32";
+}
+.flaticon-three:before {
+	content: "\33";
+}
+.flaticon-four:before {
+	content: "\34";
+}
+.flaticon-five:before {
+	content: "\35";
+}
+.flaticon-six:before {
+	content: "\36";
+}
+.flaticon-seven:before {
+	content: "\37";
+}
+.flaticon-eight:before {
+	content: "\38";
+}
+.flaticon-nine:before {
+	content: "\39";
+}
+.flaticon-colon:before {
+	content: "\3a";
+}
+.flaticon-semicolon:before {
+	content: "\3b";
+}
+.flaticon-less:before {
+	content: "\3c";
+}
+.flaticon-equal:before {
+	content: "\3d";
+}
+.flaticon-greater:before {
+	content: "\3e";
+}
+.flaticon-question:before {
+	content: "\3f";
+}
+.flaticon-at:before {
+	content: "\40";
+}
+.flaticon-A:before {
+	content: "\41";
+}
+.flaticon-B:before {
+	content: "\42";
+}
+.flaticon-C:before {
+	content: "\43";
+}
+.flaticon-D:before {
+	content: "\44";
+}
+.flaticon-E:before {
+	content: "\45";
+}
+.flaticon-F:before {
+	content: "\46";
+}
+.flaticon-G:before {
+	content: "\47";
+}
+.flaticon-H:before {
+	content: "\48";
+}
+.flaticon-I:before {
+	content: "\49";
+}
+.flaticon-J:before {
+	content: "\4a";
+}
+.flaticon-K:before {
+	content: "\4b";
+}
+.flaticon-L:before {
+	content: "\4c";
+}
+.flaticon-M:before {
+	content: "\4d";
+}
+.flaticon-N:before {
+	content: "\4e";
+}
+.flaticon-O:before {
+	content: "\4f";
+}
+.flaticon-P:before {
+	content: "\50";
+}
+.flaticon-Q:before {
+	content: "\51";
+}
+.flaticon-R:before {
+	content: "\52";
+}
+.flaticon-S:before {
+	content: "\53";
+}
+.flaticon-T:before {
+	content: "\54";
+}
+.flaticon-U:before {
+	content: "\55";
+}
+.flaticon-V:before {
+	content: "\56";
+}
+.flaticon-W:before {
+	content: "\57";
+}
+.flaticon-X:before {
+	content: "\58";
+}
+.flaticon-Y:before {
+	content: "\59";
+}
+.flaticon-Z:before {
+	content: "\5a";
+}
+.flaticon-bracketleft:before {
+	content: "\5b";
+}
+.flaticon-backslash:before {
+	content: "\5c";
+}
+.flaticon-bracketright:before {
+	content: "\5d";
+}
+.flaticon-a:before {
+	content: "\61";
+}
+.flaticon-b:before {
+	content: "\62";
+}
+.flaticon-c:before {
+	content: "\63";
+}
+.flaticon-d:before {
+	content: "\64";
+}
+.flaticon-e:before {
+	content: "\65";
+}
+.flaticon-f:before {
+	content: "\66";
+}
+.flaticon-g:before {
+	content: "\67";
+}
+.flaticon-h:before {
+	content: "\68";
+}
+.flaticon-i:before {
+	content: "\69";
+}
+.flaticon-j:before {
+	content: "\6a";
+}
+.flaticon-k:before {
+	content: "\6b";
+}
+.flaticon-l:before {
+	content: "\6c";
+}
+.flaticon-m:before {
+	content: "\6d";
+}
+.flaticon-n:before {
+	content: "\6e";
+}
+.flaticon-o:before {
+	content: "\6f";
+}
+.flaticon-p:before {
+	content: "\70";
+}
+.flaticon-q:before {
+	content: "\71";
+}
+.flaticon-r:before {
+	content: "\72";
+}
+.flaticon-s:before {
+	content: "\73";
+}
+.flaticon-t:before {
+	content: "\74";
+}
+.flaticon-u:before {
+	content: "\75";
+}
+.flaticon-v:before {
+	content: "\76";
+}
+.flaticon-w:before {
+	content: "\77";
+}
+.flaticon-x:before {
+	content: "\78";
+}
+.flaticon-y:before {
+	content: "\79";
+}
+.flaticon-z:before {
+	content: "\7a";
+}
+.flaticon-braceleft:before {
+	content: "\7b";
+}
+.flaticon-bar:before {
+	content: "\7c";
+}
+.flaticon-braceright:before {
+	content: "\7d";
+}
+.flaticon-aring:before {
+	content: "\e5";
+}
+.flaticon-ocircumflex:before {
+	content: "\f4";
+}
+.flaticon-cent:before {
+	content: "\a2";
+}
+.flaticon-sterling:before {
+	content: "\a3";
+}
+.flaticon-section:before {
+	content: "\a7";
+}
+.flaticon-bullet:before {
+	content: "\2022";
+}
+.flaticon-germandbls:before {
+	content: "\df";
+}
+.flaticon-copyright:before {
+	content: "\a9";
+}
+.flaticon-AE:before {
+	content: "\c6";
+}
+.flaticon-partialdiff:before {
+	content: "\2202";
+}

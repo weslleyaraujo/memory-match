@@ -1,0 +1,17 @@
+// ******************
+// freakyregular font
+// ***
+
+$source-location: '/dist/fonts/freak';
+
+@font-face {
+  font-family: 'freakyregular';
+  src: url('#{$source-location}/freaky-webfont.eot');
+  src: url('#{$source-location}/freaky-webfont.eot?#iefix') format('embedded-opentype'),
+    url('#{$source-location}/freaky-webfont.woff2') format('woff2'),
+    url('#{$source-location}/freaky-webfont.woff') format('woff'),
+    url('#{$source-location}/freaky-webfont.ttf') format('truetype'),
+    url('#{$source-location}/freaky-webfont.svg#freakyregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
