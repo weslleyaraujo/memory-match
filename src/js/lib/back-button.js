@@ -1,9 +1,11 @@
 define([
   'jquery',
-  'shared/mediator',
-], function (jquery, mediator) {
 
-  return {
+  'lib/pages',
+  'shared/mediator',
+], function (jquery, pages, mediator) {
+
+  return $.extend(true, {}, pages, {
     config: {
       el: '[data-component="back-button"]',
       hiddenClass: 'is-hidden'
@@ -37,10 +39,13 @@ define([
     },
 
     onClick: function (event) {
-      mediator.publish('game:abort');
-      this.hide();
+      this.changePage('initial').done($.proxy(function () {
+        mediator.publish('game:abort');
+        this.hide();
+      }, this));
+
       event.preventDefault();
     },
-  };
+  });
 
 });

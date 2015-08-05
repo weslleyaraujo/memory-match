@@ -1,22 +1,33 @@
 define([], function () {
-  return {
-    dumb: {
+  return [
+    {
+      index: 0,
+      name: 'dumb',
       size: 2,
     },
 
-    easy: {
+    {
+      index: 1,
+      name: 'easy',
       size: 4,
     },
 
-    medium: {
+    {
+      index: 2,
+      name: 'medium',
       size: 6,
     },
 
-    hard: {
+    {
+      index: 3,
+      name: 'hard',
       size: 4,
     },
-    expert: {
+
+    {
+      index: 4,
+      name: 'expert',
       size: 8,
     },
-  };
+  ];
 });
