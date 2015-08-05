@@ -163,9 +163,11 @@ define([
     },
 
     onWinGame: function() {
-      this.changePage('win', function () {
-        mediator.publish('game:win');
-      });
+      this.changePage('win').done($.proxy(function () {
+        mediator.publish('game:win', {
+          index: this.options.index
+        });
+      }, this));
     },
 
     isWinner: function() {
@@ -203,7 +205,7 @@ define([
     },
 
     start: function (data) {
-      this.size = (this.options.x * this.options.y);
+      this.size = (this.options.size * this.options.size);
       this.generateCharacters();
       this.generateBoard();
 
@@ -212,7 +214,7 @@ define([
     },
 
     generateBoard: function () {
-      this.board = createArray(this.options.x).map($.proxy(this.createLine, this, this.options.y));
+      this.board = createArray(this.options.size).map($.proxy(this.createLine, this, this.options.size));
     },
 
     generateCharacters: function () {

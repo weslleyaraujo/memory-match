@@ -5,11 +5,13 @@ define([
     'lib/locker',
     'lib/easter-egg',
     'lib/back-button',
-], function (fastclick, opening, game, locker, easterEgg, backButton) {
+    'lib/next-level',
+], function (fastclick, opening, game, locker, easterEgg, backButton, nextLevel) {
   fastclick.attach(document.body);
   locker.init();
   opening.init();
   game.init();
   easterEgg.init();
   backButton.init();
+  nextLevel.init();
 });

@@ -25,8 +25,14 @@ define([
       this.elements.$el.on('submit', $.proxy(this.onSubmit, this));
     },
 
-    getLevel: function () {
+    getLevelName: function () {
       return this.elements.$el.find('[name="level"]').val();
+    },
+
+    getLevel: function (value) {
+      return levels.filter(function (item) {
+        return item.name === value;
+      })[0];
     },
 
     onSubmit: function (event) {
@@ -34,22 +40,9 @@ define([
       event.preventDefault();
     },
 
-    getData: function () {
-      var value = this.getLevel();
-
-      return {
-        x: levels[value].size,
-        y: levels[value].size,
-      };
-    },
-
     onPageChange: function () {
-      var data = this.getData();
-
-      mediator.publish('game:start', {
-        x: data.x,
-        y: data.y
-      });
+      var name = this.getLevelName();
+      mediator.publish('game:start', this.getLevel(name));
     },
   });
 

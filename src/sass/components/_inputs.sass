@@ -20,7 +20,7 @@ $module-height: 45px
   margin: 10px 0
   cursor: pointer
   outline: 0
-  transition: background-color $transition-time
+  transition: background-color $transition-time, color $transition-time
 
 .#{$module-name}-wrap
   position: relative
@@ -39,3 +39,8 @@ $module-height: 45px
     top: 15px
     right: 10px
     transition: color $transition-time
+
+.#{$module-name}__text-toggle
+  color: $color-light
+  &.is-active
+    color: $color-reading
