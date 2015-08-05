@@ -14,7 +14,7 @@ define([
         maximum: 'Play again!'
       }
     },
-  
+
     init: function () {
       this.prepare();
       this.bind();
@@ -26,12 +26,28 @@ define([
     },
 
     bind: function () {
+      this.elements.$el.on('click', $.proxy(this.onClick, this));
       mediator.subscribe('game:win', $.proxy(this.onGameWin, this));
       mediator.subscribe('game:start', $.proxy(this.onGameStart, this));
     },
 
     setLabel: function (name) {
       this.elements.$el.text(name).addClass('is-active');
+    },
+
+    getLastLevel: function () {
+      var size = levels.length;
+      return levels[size - 1];
+    },
+
+    onClick: function(event) {
+      mediator.publish('game:abort');
+
+      this.changePage('game').done($.proxy(function() {
+        mediator.publish('game:start', this.next ? this.next : this.getNextLevel());
+      }, this));
+
+      event.preventDefault();
     },
 
     getNextLevel: function() {

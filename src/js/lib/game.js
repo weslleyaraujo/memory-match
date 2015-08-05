@@ -79,9 +79,7 @@ define([
     },
 
     onGameAbort: function () {
-      this.changePage('initial').done($.proxy(function () {
-        this.abort();
-      }, this));
+      this.abort();
     },
 
     onEasterEgg: function () {
