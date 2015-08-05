@@ -3,14 +3,22 @@
     <title> MemoryMatch game created with Javascript </title>
 
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-    <link href="dist/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="<%= data.config.hostname %><%= data.config.css.main %>" rel="stylesheet" type="text/css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   </head>
 
   <body>
 
+    <!--
+      FIXME: This only exists to "trigger" the font downloads
+    -->
+    <div class="ui-fonts-loader">
+      <div class="ui-fonts-loader__freak">memory-macth</div>
+      <div class="ui-fonts-loader__special">memory-match</div>
+    </div>
+
     <div class="ui-easter-egg" data-component="easter-egg">
-      <object type="image/svg+xml" data="dist/images/easter-egg.svg" class="ui-easter-egg-image"></object>
+      <object type="image/svg+xml" data="<%= data.config.hostname %><%= data.config.images.src %>/easter-egg.svg" class="ui-easter-egg-image"></object>
     </div>
 
     <div class="ui-locker" data-component="locker"></div>
@@ -87,7 +95,8 @@
       <a class="ui-footer-username" href="http://twitter.com/_weslleyaraujo" target="_blank">@_weslleyaraujo</a>
     </footer>
 
-    <script data-main="src/js/main.js" src="src/js/vendor/requirejs/require.js"></script>
+    <script data-main="<%= data.config.hostname %><%= data.config.js.main %>?<%= new Date().getTime() %>"
+      src="<%= data.config.hostname %><%= data.config.js.vendor %>?<%= new Date().getTime() %>"></script>
 
   </body>
 </html>

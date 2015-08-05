@@ -1,14 +1,16 @@
 module.exports = function(grunt) {
   'use strict';
 
-  grunt.registerTask('develop', [
+  grunt.registerTask('build', [
     'jshint:all',
     'sass',
     'postcss',
-    'render',
     'copy',
-    'connect',
-    'watch'
+    'requirejs',
+    'uglify',
+    'render',
+    'htmlmin',
+    'replace',
   ]);
 
 };
