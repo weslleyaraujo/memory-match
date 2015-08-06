@@ -4,10 +4,6 @@ A fully functional memory match game crafted with javascript + html + css  💪
 
 > You can play it and check it out here: [weslleyaraujo.github.io/memory-match](http://weslleyaraujo.github.io/memory-match)
 
-
-## Screenshot
-![memory-match screenshot](http://g.recordit.co/2xo9GwGBcJ.gif)
-
 ## Installing
 
 It depends on npm, grunt and bower, and to install just run the following commands:
