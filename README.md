@@ -50,4 +50,4 @@ I'm following [this](https://github.com/netshoes/styleguide/tree/master/scm) sty
 
 ### License
 
-Memory Match's is licensed under the [Beerware License](https://pt.wikipedia.org/wiki/Beerware).
+Memory Match's is licensed under the [Beerware License](https://en.wikipedia.org/wiki/Beerware).
