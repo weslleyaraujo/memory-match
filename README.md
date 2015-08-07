@@ -25,7 +25,7 @@ It will generate the necessary assets and run up a server into `http://localhost
 
 ## Building
 
-You can build it using the build task and it requires the `--config` parameter (which is the config file for production/development)
+You can build it using the `build` task which requires the `--config` parameter (the config file for production/development)
 
 ```
 grunt build --config=production
@@ -36,7 +36,7 @@ It will generate the project into a `dist` directory
 
 ## Deploy
 
-The deploy task runs the build and upload the `dir` dir into the `gh-pages`
+The deploy task runs the build and upload the `dist` dir into the `gh-pages`
 
 ```
 grunt deploy --config=production
