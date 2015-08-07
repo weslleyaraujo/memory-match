@@ -6,7 +6,8 @@ define([
     'lib/easter-egg',
     'lib/back-button',
     'lib/next-level',
-], function (fastclick, opening, game, locker, easterEgg, backButton, nextLevel) {
+    'lib/tracking',
+], function (fastclick, opening, game, locker, easterEgg, backButton, nextLevel, tracking) {
   fastclick.attach(document.body);
   locker.init();
   opening.init();
@@ -14,4 +15,5 @@ define([
   easterEgg.init();
   backButton.init();
   nextLevel.init();
+  tracking.init();
 });
