@@ -1,0 +1,17 @@
+// ******************
+// peax font
+// ***
+
+$source-location: '/src/fonts/peax';
+
+@font-face {
+  font-family: 'peaxwebdesignfreeiconsmedium';
+  src: url('#{$source-location}/peaxwebdesignfreeicons-webfont.eot');
+  src: url('#{$source-location}/peaxwebdesignfreeicons-webfont.eot?#iefix') format('embedded-opentype'),
+       url('#{$source-location}/peaxwebdesignfreeicons-webfont.woff2') format('woff2'),
+       url('#{$source-location}/peaxwebdesignfreeicons-webfont.woff') format('woff'),
+       url('#{$source-location}/peaxwebdesignfreeicons-webfont.ttf') format('truetype'),
+       url('#{$source-location}/peaxwebdesignfreeicons-webfont.svg#peaxwebdesignfreeiconsmedium') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
