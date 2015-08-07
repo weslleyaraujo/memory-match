@@ -54,6 +54,8 @@ dist/css/*.css
 dist/js/*.js
 dist/fonts/**/*
 dist/images/
+dist/*.ico
+dist/*.png
 index.html
 !src/index.html
 *.DS_Store

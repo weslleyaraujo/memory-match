@@ -14,6 +14,13 @@ module.exports = function(grunt) {
       cwd: 'src/images/',
       src: '**',
       dest: 'dist/images',
+    },
+
+    ico: {
+      expand: true,
+      cwd: '.',
+      src: ['*.ico', '*.png'],
+      dest: 'dist',
     }
   });
 
