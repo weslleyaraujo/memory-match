@@ -7,6 +7,10 @@ define([
   return {
     config: {
       el: '[data-component="easter-egg"]',
+      favicon: {
+        el: 'link[rel="icon"]',
+        data: 'favicon-easter-egg.png'
+      },
       bodyActiveClass: 'penis-mode'
     },
 
@@ -18,6 +22,7 @@ define([
     prepare: function () {
       this.elements = {};
       this.elements.$el = $(this.config.el);
+      this.elements.$favicon = $(this.config.favicon.el);
       this.elements.$body = $('body');
     },
 
@@ -27,12 +32,18 @@ define([
     },
 
     onShow: function () {
+      this.setFavicon();
       this.elements.$el.addClass('is-visible');
       this.elements.$body.addClass(this.config.bodyActiveClass);
     },
 
     onAnimationEnd: function () {
       this.elements.$el.addClass('is-done');
+    },
+
+    setFavicon: function () {
+      var icon = this.elements.$favicon.data('hostname') + this.config.favicon.data;
+      this.elements.$favicon.attr('href', icon);
     },
   };
 
