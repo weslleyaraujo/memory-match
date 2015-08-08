@@ -23,7 +23,12 @@ define([
   };
 
   Card.prototype.onClick = function (event) {
+    event.preventDefault();
     var $target = $(event.currentTarget);
+
+    if($target.hasClass('is-matched')){
+      return;
+    }
 
     if ($target.hasClass('is-active')) {
       $target.removeClass('is-active');
@@ -33,8 +38,6 @@ define([
 
     $target.addClass('is-active');
     this.afterClick();
-
-    event.preventDefault();
   };
 
   Card.prototype.afterClick = function () {
@@ -62,7 +65,6 @@ define([
     this.elements.$el.append(this.elements.$back, this.elements.$front);
 
   };
-
 
   return Card;
 
