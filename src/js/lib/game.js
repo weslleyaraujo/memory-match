@@ -15,7 +15,7 @@ define([
   return $.extend(true, {}, pages, {
     config: {
       el: '[data-component="board"]',
-      flipAnimationTime: 1000,
+      delayTime: 800,
       animationClass: 'ui-board--slide-in-fade'
     },
   
@@ -72,7 +72,7 @@ define([
 
     isEqualClick: function (data) {
       try {
-        return this.clicks.last.id === data.id;
+        return this.clicks.current.id === data.id;
       } catch(e) {
         return false;
       }
@@ -86,36 +86,46 @@ define([
       mediator.publish('easteregg:show');
     },
 
-    onCardClick: function (data) {
+    onCardClick: function(data) {
       if (this.isEqualClick(data)) {
         this.clearClicks();
+        this.unflipCards();
+
         return;
       }
 
-      if(this.isLastClick()) {
+      if(!this.isFirstClick()) {
         this.recordClick('current', data);
-        this.onBothClicks();
+        this.reveal(data);
         return;
       }
 
+      this.reveal(data);
       this.recordClick('last', data);
+      this.onBothClicks();
+    },
+
+    reveal: function(data) {
+      this.elements.$el.find('#' + data.id).addClass('is-flipped');
     },
 
     onBothClicks: function () {
-      if(!this.isClicksValid()) {
-        return;
-      }
-
       mediator.publish('locker:active');
-      this.revealCards();
+
+      setTimeout($.proxy(function () {
+        if(this.isMatch()) {
+          this.afterMatched();
+          return;
+        }
+
+        this.clearClicks();
+        this.unflipCards();
+        this.removeLocker();
+      }, this), this.config.delayTime);
     },
 
-    isClicksValid: function () {
-      return this.clicks.last.id !== this.clicks.current.id;
-    },
-
-    isLastClick: function () {
-      return !!this.clicks.last;
+    isFirstClick: function () {
+      return !!this.clicks.current;
     },
 
     recordClick: function (key, data) {
@@ -127,22 +137,12 @@ define([
     },
 
     unflipCards: function () {
-      this.elements.$el.find('td.is-flipped').removeClass('is-flipped is-active');
+      this.elements.$el.find('td.is-flipped, td.is-active')
+        .removeClass('is-flipped is-active');
     },
 
     addMatch: function () {
       this.matches++;
-    },
-
-    afterReveal: function () {
-      if(this.isMatch()) {
-        this.afterMatched();
-        return;
-      }
-
-      this.clearClicks();
-      this.unflipCards();
-      this.removeLocker();
     },
 
     afterMatched: function () {
@@ -182,11 +182,6 @@ define([
 
     isMatch: function () {
       return this.clicks.last.name === this.clicks.current.name;
-    },
-
-    revealCards: function () {
-      this.elements.$el.find('td.is-active').addClass('is-flipped');
-      setTimeout($.proxy(this.afterReveal, this), this.config.flipAnimationTime);
     },
 
     onGameStart: function (data) {

@@ -13,7 +13,7 @@ define([
 
   Card.prototype.prepare = function () {
     this.name = this.options.name;
-    this.id = this.options.name + '-' + getRandomChar(10);
+    this.id = getRandomChar(10) + this.name;
 
     this.elementsHandler();
   };
@@ -27,12 +27,6 @@ define([
     var $target = $(event.currentTarget);
 
     if($target.hasClass('is-matched')){
-      return;
-    }
-
-    if ($target.hasClass('is-active')) {
-      $target.removeClass('is-active');
-      this.afterClick();
       return;
     }
 
