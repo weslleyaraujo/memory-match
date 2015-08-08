@@ -1,4 +1,4 @@
-define([], function () {
+define(function () {
 
   var subscriptions = {},
   Mediator = function() {};

@@ -1,4 +1,4 @@
-define([], function () {
+define(function () {
   return function (charSize) {
     charSize = charSize || 1;
 
