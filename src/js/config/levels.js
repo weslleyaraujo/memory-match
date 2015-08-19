@@ -23,5 +23,10 @@ define(function () {
       name: 'expert',
       size: 8,
     },
+    {
+      index: 5,
+      name: 'super-expert',
+      size: 10,
+    },
   ];
 });
