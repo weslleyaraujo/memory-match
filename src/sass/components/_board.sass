@@ -37,8 +37,9 @@ $module-max-width: 600px
     
     &.is-matched
       figure 
-        background-color: map-get($colors, 4) !important
-        color: map-get($colors, 1) !important
+        +themerize(background-color, 4)
+        // background-color: map-get($colors, 4) !important
+        // color: map-get($colors, 1) !important
 
     &.is-active
       figure 
