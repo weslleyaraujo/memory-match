@@ -9,11 +9,11 @@ define([
     'lib/tracking',
 ], function (fastclick, opening, game, locker, easterEgg, backButton, nextLevel, tracking) {
   fastclick.attach(document.body);
-  locker.init();
-  opening.init();
-  game.init();
-  easterEgg.init();
-  backButton.init();
-  nextLevel.init();
-  tracking.init();
+
+  Array.prototype.slice.call(arguments).forEach(function (component) {
+    if (component.init) {
+      component.init();
+    }
+  });
+
 });

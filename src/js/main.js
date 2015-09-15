@@ -11,5 +11,4 @@ requirejs.config({
   }
 });
 
-
 requirejs(['app']);
